@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"">
+    <title>배반자 나오라우</title>
+
+    <link rel="shortcut icon" href="./Asset/Icon/appicon.png" type="image/x-icon">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./Asset/Icon/apple-touch-icon.png">
+
+    <!-- KITA Engine -->
+    <script src="./Engine/KITA.js"></script>
+    <link rel="stylesheet" href="./Engine/KITA.css">
+
+    <!-- Storyboard -->
+    <script src="./Storyboard/Scene1/scene1.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./Style/font.css">
+    <link rel="stylesheet" href="./Style/button.css">
+    <link rel="stylesheet" href="./Style/story_scene.css">
+
+    <script src="./Script/story_scene.js"></script>
+    <script src="./Engine/KITA_loader.js"></script>
+</head>
+
+<body>
+    <kita-layer>
+        <img class="story-image" src="">
+
+        <div class="story-text"></div>
+
+        <div class="btn-ui">
+            <button onclick=" next_text();">다음</button>
+        </div>
+    </kita-layer>
+
+    <audio
+        src="./Asset/Audio/BG/MainTheme.mp3"
+        onloadstart="this.volume=0.4"
+        loop autoplay>
+    </audio>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+{
+    "name": "배반자 나오라우",
+    "short_name": "배반자 나오라우",
+    "display": "fullscreen",
+    "theme_color": "#000",
+    "background_color": "#000",
+    "icons": [
+        {
+            "src": "./Asset/Icon/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "./Asset/Icon/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

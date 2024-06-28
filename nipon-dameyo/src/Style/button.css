@@ -1,0 +1,15 @@
+.btn-ui button {
+    font-family: "Sam3KRFont";
+    letter-spacing: -8px;
+    font-size: 3rem;
+    background: transparent;
+    color: #43120e;
+    border: none;
+    border-bottom: 1px dashed #586058;
+    outline: none !important;
+}
+
+.btn-ui button:hover {
+    background: linear-gradient(180deg, hsla(143, 15%, 41%, 1) 0%, hsla(143, 15%, 41%, 1) 88%, hsla(0, 0%, 0%, 1) 88%, hsla(0, 0%, 0%, 1) 100%);
+    color: #000000;
+}

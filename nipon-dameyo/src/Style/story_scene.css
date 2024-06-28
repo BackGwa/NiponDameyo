@@ -1,0 +1,62 @@
+.btn-ui {
+    position: absolute;
+    width: 13rem;
+    height: 10rem;
+    left: 50%;
+    bottom: 5rem;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+kita-layer {
+    opacity: 0.0;
+    transition: 1s steps(5);
+}
+
+.fade-opening {
+    opacity: 1.0;
+}
+
+.story-text {
+    position: absolute;
+    color: #ca2e2c;
+    font-size: 3rem;
+    height: 6rem;
+    left: 50%;
+    bottom: 18rem;
+    transform: translateX(-50%);
+    font-family: 'Sam3KRFont';
+    text-align: center;
+    white-space: nowrap;
+}
+
+.story-image {
+    position: absolute;
+    width: 640px;
+    height: 480px;
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    opacity: 0.0;
+    transition: 0.5s steps(4);
+}
+
+.show-image {
+    opacity: 1.0;
+}
+
+.block-btn {
+    pointer-events: none !important;
+}
+
+button:disabled {
+    opacity: 0.75;
+}
+
+button:disabled:hover {
+    background: transparent !important;
+    color: #43120e !important;
+}

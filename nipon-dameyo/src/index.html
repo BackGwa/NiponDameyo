@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"">
+    <title>배반자 나오라우</title>
+
+    <link rel="shortcut icon" href="./Asset/Icon/appicon.png" type="image/x-icon">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./Asset/Icon/apple-touch-icon.png">
+
+    <!-- KITA Engine -->
+    <script src="./Engine/KITA.js"></script>
+    <link rel="stylesheet" href="./Engine/KITA.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./Style/font.css">
+    <link rel="stylesheet" href="./Style/button.css">
+    <script src="./Script/main.js"></script>
+    <link rel="stylesheet" href="./Style/menu.css">
+
+    <script src="./Engine/KITA_loader.js"></script>
+</head>
+
+<body>
+    <kita-layer>
+        <img class="logo-image" src="./Asset/Texture/MainLogo.png">
+        <div class="btn-ui">
+            <button onclick="play();">청산 하기</button>
+            <button onclick="exit();">눈 감아주기</button>
+        </div>
+
+        <div class="infomation">2024 - 아산스마트팩토리마이스터고 게임개발부 (PLAYLABS)</div>
+    </kita-layer>
+
+    <audio
+        src="./Asset/Audio/BG/MainTheme.mp3"
+        onloadstart="this.volume=0.4"
+        loop autoplay>
+    </audio>
+</body>
+
+</html>
