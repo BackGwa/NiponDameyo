@@ -25,11 +25,13 @@ function text_gen() {
             } else {
                 text.innerHTML += script[text_index].text[i];
             }
-        }, i * 50);
+            vse = randint(1, 3);
+            PlayAudio(`Asset/Audio/SE/speech${vse}.mp3`, 0.6);
+        }, i * 55);
     }
     setTimeout(() => {
         btn.disabled = false;
-    }, len * 50);
+    }, len * 55);
 }
 
 function next_text() {

@@ -48,7 +48,7 @@ kita-layer {
 }
 
 .last-animation {
-    animation: last-intro 3s steps(5) infinite;
+    animation: last-intro 2s steps(10) infinite;
 }
 
 .button-animation {

@@ -41,10 +41,14 @@ kita-layer {
     transform: translateX(-50%);
     border: none;
     opacity: 0.0;
-    transition: 0.5s steps(4);
+    max-width: 1px;
+    transition: 0.4s steps(4);
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .show-image {
+    max-width: 640px;
     opacity: 1.0;
 }
 
