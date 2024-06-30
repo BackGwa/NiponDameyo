@@ -5,12 +5,13 @@ function init() {
     infomaton = document.querySelector('.infomation');
 
     PlayAnimation(logo_image, "logo-animation");
+    PlayAnimation(button_area, "logo-animation");
 
     setTimeout(() => {
         PlayAnimation(logo_image, "last-animation");
         PlayAnimation(button_area, "button-animation");
         PlayAnimation(infomaton, "infomation-animation");
-    }, 10000);
+    }, 21500);
 }
 
 function play() {

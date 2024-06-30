@@ -20,14 +20,14 @@ function text_gen() {
 
     for(let i = 0; i < len; i++) {
         setTimeout(() => {
-            if (script[text_index].text[i] == "^") {
+            if (script[text_index].text[i] == "↓") {
                 text.innerHTML += "<br>";
             } else {
                 text.innerHTML += script[text_index].text[i];
             }
             vse = randint(1, 3);
             PlayAudio(`Asset/Audio/SE/speech${vse}.mp3`, 0.6);
-        }, i * 55);
+        }, i * 55 + randint(0, 25));
     }
     setTimeout(() => {
         btn.disabled = false;
