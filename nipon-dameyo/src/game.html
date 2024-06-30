@@ -16,18 +16,60 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="./Style/font.css">
+    <link rel="stylesheet" href="./Style/game.css">
 
+    <script src="./Script/game.js"></script>
     <script src="./Engine/KITA_loader.js"></script>
 </head>
 
 <body>
-    <kita-layer></kita-layer>
+    <kita-layer>
+        <div class="main-layer">
+            <div class="top-layer">
+                <img class="outside" src="./Asset/Texture/outside.png">
+                <img src="./Asset/Texture/person_shadow.png" class="person-shadow">
+            </div>
+            <div class="bottom-layer">
+                <div class="person-area">
+                    <img src="./Asset/Texture/person_bg.png" class="person-bg">
+                    <img src="./Asset/Texture/table.png" class="table">
+                </div>
+                <div class="detect-area">
+                    <!-- item test-->
+                    <div class="document-item cost-size" style="top: 0; left: 0;">
+                        <p>
+                            대한민국 제1공화국<br>
+                            반민특위 공식 공고<br>
+                            <br>
+                            조사위원,<br>
+                            <br>
+                            반민특위에서 반민족행위자에 대한<br>
+                            조사를 맡게된걸 환영하오.<br>
+                            <br>
+                            조사를 진행하고, 증서에 도장을 찍고<br>
+                            대상에게 문서를 돌려주시오.<br>
+                            <br>
+                            혹여나, 친일파로 확인된다면,<br>
+                            즉시 사살하시오.<br>
+                            <br>
+                            친일파 청산을 위하여,
+                        </p>
+                        <img src="./Asset/Texture/mark.png" class="paper-mark">
+                    </div>
+                    
+                    <img src="./Asset/Texture/work_bg.png" class="work-bg">
+                </div>
+            </div>
+        </div>
+
+        <img src="./Asset/Texture/lay.png" class="lay-overlay">
+    </kita-layer>
 
     <audio
-        src="./Asset/Audio/BG/MainTheme.mp3"
-        onloadstart="this.volume=0.4"
+        src="./Asset/Audio/SE/ambient.mp3"
+        onloadstart="this.volume=0.1"
         loop autoplay>
-    </audio>
+    </audio> 
 </body>
 
 </html>
