@@ -12,6 +12,10 @@ function init() {
 }
 
 function dm_event() {
+    window.addEventListener("mouseup", () => {
+        moving = false;
+    });
+
     dm_item.forEach((i) => {
         i.addEventListener("mousedown", () => {
             dm_item.forEach((j) => {
@@ -22,10 +26,9 @@ function dm_event() {
             i.classList.add("z-up");
         });
 
-        window.addEventListener("mouseup", () => {
+        i.addEventListener("mouseup", () => {
             PlayAudio(`Asset/Audio/SE/paper_right.mp3`, 0.05);
-            moving = false;
-        });
+        })
 
         i.addEventListener("mousemove", (e) => {
             if (moving && i.classList.contains("z-up")) {
