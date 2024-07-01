@@ -1,10 +1,13 @@
 let moving;
 let isopen = false;
+let pps = false;
+let submit = false;
 
 function init() {
     EngineInit();
 
     stamp = document.querySelector(".stamp");
+    mp = document.querySelector(".mini-passport");
 
     setTimeout(() => {
         kita.classList.add("fade-opening");
@@ -41,15 +44,60 @@ function init() {
 }
 
 function dm_event() {
-    window.addEventListener("mouseup", () => {
+    window.addEventListener("mouseup", (e) => {
+        write("window mouseup", e.target);
+        if (pps) {
+            submit = true;
+            mp.classList.remove("mpshow");
+            PlayAnimation(mp, "mpani", true);
+            pps = false;
+        }
         moving = false;
         dm_item.forEach((i) => {
             i.classList.remove("scale-up");
         });
     });
 
+    window.addEventListener("mousemove", (e) => {
+        if (moving && !submit) {
+            write("pps", pps);
+            write("submit", submit);
+            parent = e.target.offsetParent;
+            write("parent", parent);
+
+            if (parent.classList.contains("person-area")) {
+                dm_item.forEach((i) => {
+                    write("passport drop", i);
+                    if (i.classList.contains("z-up") && i.classList.contains("passport-size")) {
+                        write("passport drop", i);
+                        i.classList.add("passport-small");
+                        pps = true;
+                    }
+                });
+            } else {
+                dm_item.forEach((i) => {
+                    write("passport redrop", i);
+                    i.classList.remove("passport-small");
+                });
+                pps = false;
+            }
+        } else {
+            pps = false;
+        }
+
+        if (pps) {
+            mp.classList.add("mpshow");
+            mp.style.top = `${e.offsetY - 36}px`;
+            mp.style.left = `${e.offsetX - 36}px`;
+        } else {
+            mp.classList.remove("mpshow");
+        }
+    });
+
     dm_item.forEach((i) => {
         i.addEventListener("mousedown", (e) => {
+            write("Item Select", e.target);
+
             dm_item.forEach((j) => {
                 j.classList.remove("z-up");
             });
@@ -59,22 +107,34 @@ function dm_event() {
                 return;
             }
 
-            PlayAudio(`Asset/Audio/SE/paper_pick_up.mp3`, 0.2);
+            if (e.target.className.includes("passport-size")) {
+                PlayAudio(`Asset/Audio/SE/passport_up.mp3`, 1);
+            } else {
+                PlayAudio(`Asset/Audio/SE/paper_pick_up.mp3`, 0.2);
+            }
+
             moving = true;
             i.classList.add("z-up");
             i.classList.add("scale-up");
         });
 
         i.addEventListener("mouseup", (e) => {
+            write("Item Unselect", e.target);
+
             if (e.target.className == "paper-left" || e.target.className == "paper-right") {
                 return;
             }
 
-            PlayAudio(`Asset/Audio/SE/paper_pick_down.mp3`, 0.1);
+            if (e.target.className.includes("passport-size")) {
+                PlayAudio(`Asset/Audio/SE/passport_down.mp3`, 0.5);
+            } else {
+                PlayAudio(`Asset/Audio/SE/paper_pick_down.mp3`, 0.2);
+            }
         })
 
         i.addEventListener("mousemove", (e) => {
             if (moving && i.classList.contains("z-up")) {
+                write("Item Moving", e.target);
                 const top = i.style.top;
                 const left = i.style.left
                 i.style.top = `${parseInt(top.substring(0, top.length - 2)) + e.movementY}px`;

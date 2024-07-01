@@ -79,12 +79,14 @@ kita-layer {
     width: 100%;
     bottom: 0;
     z-index: 10;
+    pointer-events: none;
 }
 
 .person-bg {
     position: absolute;
     width: 100%;
-    z-index: 0;
+    z-index: 5;
+    pointer-events: all;
 }
 
 .lay-overlay {
@@ -216,6 +218,7 @@ kita-layer {
     font-size: 1.15rem;
     line-height: 1.4rem;
     color: #363636;
+    pointer-events: none;
 }
 
 .paper-mark {
@@ -418,4 +421,49 @@ kita-layer {
 .disable {
     opacity: 0.0;
     pointer-events: none;
+}
+
+.handgun {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 25rem;
+    height: 15rem;
+}
+
+.handgun-img {
+    position: absolute;
+    width: 90%;
+}
+
+.passport-small {
+    display: none !important;
+}
+
+.mini-passport {
+    position: absolute;
+    width: 72px;
+    pointer-events: none;
+    filter: drop-shadow(2px 8px 0 #ffffff10);
+    display: none;
+    z-index: 5;
+}
+
+.mpshow {
+    display: block;
+}
+
+.mpani {
+    display: block;
+    animation: 0.4s mpani-drop forwards;
+}
+
+@keyframes mpani-drop {
+    0% {
+        transform: translateY(0%);
+    }
+
+    100% {
+        transform: translateY(500%);
+    }
 }

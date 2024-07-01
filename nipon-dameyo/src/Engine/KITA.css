@@ -27,10 +27,36 @@ kita-layer {
     pointer-events: all;
 }
 
+kita-logger {
+    position: absolute;
+    height: fit-content;
+    z-index: 100;
+    text-align: left;
+    font-family: monospace;
+    white-space: nowrap;
+    color: #ffffff;
+    font-size: 0.75rem;
+    overflow-x: hidden;
+    overflow-y: visible;
+    bottom: 0;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .engine-version::after {
     content: "KITA ENGINE v701";
 }
 
 .engine-version:hover::after {
     content: "PLAYLABS에 의해 제작 됨";
+}
+
+kita-fps {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    z-index: 100;
+    bottom: 0;
+    right: 0;
+    background: #00000050;
 }

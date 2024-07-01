@@ -6,19 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>배반자 나오라우</title>
 
+    <!-- KITA Engine -->
+    <script src="./Engine/KITA.js"></script>
     <link rel="stylesheet" href="./Engine/KITA.css">
-    <link rel="stylesheet" href="./Style/splash.css">
 
-    <script>
-        setTimeout(() => { location.href = "index.html"; }, 11000);
-    </script>
+    <link rel="stylesheet" href="./Style/splash.css">
 
     <style>
         * { cursor: none !important; }
     </style>
+
+    <script>
+        function init() {
+            EngineInit();
+            setTimeout(() => { location.href = "index.html"; }, 11000);
+        }
+    </script>
+
+    <script src="./Engine/KITA_loader.js"></script>
 </head>
 
 <body>
+    <kita-fps></kita-fps>
+    <kita-logger></kita-logger>
     <video src="Asset/Video/splash.mp4" autoplay></video>
 </body>
 
