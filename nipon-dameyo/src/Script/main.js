@@ -3,6 +3,7 @@ function init() {
     logo_image = document.querySelector('.logo-image');
     button_area = document.querySelector('.btn-ui');
     infomaton = document.querySelector('.infomation');
+    version = document.querySelector('.engine-version')
 
     PlayAnimation(logo_image, "logo-animation");
     PlayAnimation(button_area, "logo-animation");
@@ -11,6 +12,7 @@ function init() {
         PlayAnimation(logo_image, "last-animation");
         PlayAnimation(button_area, "button-animation");
         PlayAnimation(infomaton, "infomation-animation");
+        PlayAnimation(version, "infomation-animation");
     }, 21500);
 }
 

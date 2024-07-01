@@ -29,7 +29,7 @@ kita-layer {
 
 .infomation {
     position: absolute;
-    font-family: "Ramche";
+    font-family: 'PFStardust';
     bottom: 3rem;
     color: #586058;
     left: 50%;
@@ -37,7 +37,26 @@ kita-layer {
     white-space: nowrap;
     font-size: 1.2rem;
     opacity: 0.0;
-    pointer-events: none;
+}
+
+.infomation::after {
+    content: "2024 - 아산스마트팩토리마이스터고 게임개발부 (PLAYLABS)";
+}
+
+.infomation:hover::after {
+    content: "제작 : 강찬영, 김국호, ";
+}
+
+
+.engine-version {
+    position: absolute;
+    font-family: 'PFStardust';
+    left: 3rem;
+    bottom: 3rem;
+    color: #586058;
+    white-space: nowrap;
+    font-size: 1.2rem;
+    opacity: 0.0;
 }
 
 /* Animation */
@@ -55,7 +74,7 @@ kita-layer {
 }
 
 .infomation-animation {
-    animation: infomation-fade 1s steps(4) forwards;
+    animation: infomation-fade 2s steps(8) forwards;
 }
 
 @keyframes last-intro {
@@ -225,7 +244,6 @@ kita-layer {
         top: 7rem;
     }
 }
-
 
 @keyframes infomation-fade {
     0% {

@@ -11,16 +11,26 @@ html, body {
     height: 100vh;
     margin: 0;
     overflow: hidden;
-    background: #000000;
+    background: #000;
 }
 
 kita-layer {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: calc(100vw / (16 / 9));
+    max-height: 100%;
+    max-width: calc(100vh / (9 / 16));
     overflow: hidden;
     background: #000;
     left: 50%;
     transform: translateX(-50%);
     pointer-events: all;
+}
+
+.engine-version::after {
+    content: "KITA ENGINE v701";
+}
+
+.engine-version:hover::after {
+    content: "PLAYLABS에 의해 제작 됨";
 }
