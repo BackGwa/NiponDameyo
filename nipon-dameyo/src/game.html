@@ -36,24 +36,40 @@
                 </div>
                 <div class="detect-area">
                     <!-- item test-->
+                    <div id="paper3" class="document-item passport-size allow-stamp" style="top: 220px; left: 420px;">
+                    </div>
+
                     <div id="paper2" class="document-item cost-size" style="top: 200px; left: 700px;">
-                        <p>
-                            친애하는 조사위원,<br>
-                            얼마 전 새로운 정보를 입수했다네<br>
+                        <p class="pages page1">
+                            친애하는 조사관,<br>
+                            아마 조사가 만만치 않을 것이오,<br>
+                            <br>
+                            하지만, 너무 근심쓰지 말게.<br>
+                            <br><br>
+                            기쁜 소식이 하나 있다네.<br>
+                            친일파 녀석들에 대한, 특징말이오.<br>
                             <br>
                             분명 분명히 마음에 들 것이오.<br>
-                            <br>
-                            다음 중 하나라도 해당된다면,<br>
-                            반민족행위자이니, 꼭 사살하시오.<br>
-                            <br>
-                            1. 엔화를 소지하고 있다.<br>
-                            2. 친일 증표가 있다.<br>
-                            <br>
-                            명심하시오, 조사위원.<br>
-                            절대 민간인을 사살해선 아니되오.<br>
-                            <br>
-                            친일파 청산을 위하여,
+                            <br><br>
+                            다음 장에 적어놓았으니<br>
+                            부디 도움이 되길 바라오.
                         </p>
+                        <p class="pages page2 disable">
+                            만약 다음 중 하나라도 해당된다면,<br>
+                            반민족행위자이니, 사살하시오.<br>
+                            <br>
+                            다만, 눈치챈다면, 위험할 수 있소.<br>
+                            <br><br>
+                            1. 신분증과 일치하지 않음.<br>
+                            2. 엔화를 소지하고 있음.<br>
+                            3. 친일 증표를 소지하고 있음.<br>
+                            4. 총기를 소지하고 있음.<br>
+                            <br><br>
+                            명심하시오, 조사관.<br>
+                            절대 민간인을 사살해선 아니되오.<br>
+                        </p>
+                        <div class="paper-left disable" onclick="page_move('paper2', -1)"></div>
+                        <div class="paper-right" onclick="page_move('paper2', 1)"></div>
                     </div>
 
                     <div id="paper1" class="document-item cost-size" style="top: 180px; left: 660px;">
@@ -61,7 +77,7 @@
                             대한민국 제1공화국<br>
                             반민특위 공식 공고<br>
                             <br>
-                            조사위원,<br>
+                            조사관,<br>
                             <br>
                             반민특위에서 반민족행위자에 대한<br>
                             조사를 맡게된걸 환영하오.<br>
@@ -78,11 +94,23 @@
                     </div>
 
                     <img src="./Asset/Texture/work_bg.png" class="work-bg">
+
+                    <div class="stamp">
+                        <img src="./Asset/Texture/stamp_button.png" class="stamp-button">
+                        <img src="./Asset/Texture/stamp.png" class="stamp-outline">
+                        <img src="./Asset/Texture/stamp_shadow.png" class="stamp-shadow">
+                        <img src="./Asset/Texture/pass_stamp.png" onclick="click_stamp();" class="stamp-pass">
+                        <img src="./Asset/Texture/stamp_bottom.png" class="stamp-bottom">
+                        <div class="stamp-filp" onclick="stamp_filp();"></div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="date-counter">1948년 06월 01일</div>
+        <div class="date-counter">
+            대한민국 경상북도 XX시<br>
+            1948년 10월 22일
+        </div>
         <img src="./Asset/Texture/lay.png" class="lay-overlay">
     </kita-layer>
 

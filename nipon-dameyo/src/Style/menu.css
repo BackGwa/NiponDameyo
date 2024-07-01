@@ -44,14 +44,32 @@ kita-layer {
 }
 
 .infomation:hover::after {
-    content: "제작 : 강찬영, 김국호, ";
+    content: "제작 : 강찬영, 한재경, 김국호, 상훈";
 }
 
+.game-version::after {
+    content: "DEVELOPER VERSION";
+}
+
+.game-version:hover::after {
+    content: "최종 결과물이 아닙니다. 최종 버전에서 변경될 수 있습니다.";
+}
 
 .engine-version {
     position: absolute;
     font-family: 'PFStardust';
     left: 3rem;
+    bottom: 3rem;
+    color: #586058;
+    white-space: nowrap;
+    font-size: 1.2rem;
+    opacity: 0.0;
+}
+
+.game-version {
+    position: absolute;
+    font-family: 'PFStardust';
+    right: 3rem;
     bottom: 3rem;
     color: #586058;
     white-space: nowrap;

@@ -70,8 +70,7 @@ kita-layer {
 }
 
 .detect-area {
-    width: calc(100% - 40rem - 2rem);
-    margin-left: 2rem;
+    width: calc(100% - 40rem);
     background: #0F0B0A;
 }
 
@@ -92,9 +91,10 @@ kita-layer {
     position: absolute;
     width: 100%;
     height: 100%;
-    mix-blend-mode: overlay;
+    mix-blend-mode: screen;
     pointer-events: none;
     z-index: 50;
+    opacity: 0.4;
     filter: blur(48px);
     -webkit-filter: blur(48px);
 }
@@ -175,8 +175,6 @@ kita-layer {
 .document-item {
     position: absolute;
     z-index: 1;
-    background: #e9ebea;
-    background-image: url(../Asset/Texture/paper.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -194,8 +192,17 @@ kita-layer {
 }
 
 .cost-size {
+    background-image: url(../Asset/Texture/paper.png);
+    background: #e9ebea;
     width: 19rem;
     height: 24rem;
+}
+
+.passport-size {
+    background-image: url(../Asset/Texture/passport.png);
+    background-color: transparent;
+    width: 23rem;
+    height: 29rem;
 }
 
 .document-item p {
@@ -219,12 +226,17 @@ kita-layer {
     opacity: 0.7;
 }
 
-.paper-print {
-    animation: print-animation 1.7s forwards cubic-bezier(0,1,0,1);
+.paper-print:not(.passport-size) {
+    animation: print-animation-1 1.7s forwards cubic-bezier(0,1,0,1);
     opacity: 1.0;
 }
 
-@keyframes print-animation {
+.paper-print:not(.cost-size) {
+    animation: print-animation-2 1.7s forwards cubic-bezier(0,1,0,1);
+    opacity: 1.0;
+}
+
+@keyframes print-animation-1 {
     0% {
         transform: translateX(200%) translateY(5%) rotate(15deg) skew(-5deg);
     }
@@ -234,26 +246,176 @@ kita-layer {
     }
 }
 
+@keyframes print-animation-2 {
+    0% {
+        transform: translateX(200%) translateY(5%) rotate(15deg) skew(-5deg);
+    }
+
+    100% {
+        transform: translateX(0%) translateY(0%) rotate(0deg) skew(0deg);
+    }
+}
+
+
 .scale-up {
-    transform: rotate(-1deg) scale(115%) !important;
+    transform: rotate(-1deg) scale(105%) !important;
     filter: drop-shadow(12px 12px 1px #00000025) drop-shadow(0px 0px 4px #0000001a);
     -webkit-filter: drop-shadow(12px 12px 1px #00000025) drop-shadow(0px 0px 4px #0000001a);
 }
 
+.scale-up:not(.cost-size) {
+    transform: rotate(0deg) scale(105%) !important;
+}
+
 .date-counter {
     position: absolute;
-    bottom: 35%;
+    bottom: 25%;
     color: #ca2e2c;
     left: 50%;
-    transform: translate(-50%, -50%) scale(105%);
+    transform: translate(-50%, -50%) scale(105%) rotate(1deg);
     font-size: 3.5rem;
     font-family: 'PFStardust';
     font-weight: bold;
     opacity: 0.0;
-    transition: 0.5s steps(5);
+    transition: 0.5s steps(7);
+    text-align: center;
+    line-height: 4rem;
+    padding: 3rem;
+    border: 3px dashed #ca2e2c;
 }
 
 .date-view {
-    transform: translate(-50%, -50%) scale(100%);
+    transform: translate(-50%, -50%) scale(100%) rotate(-1deg);
     opacity: 1.0;
+}
+
+.stamp {
+    position: absolute;
+    width: 570px;
+    height: 331px;
+    right: -533px;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 5;
+    filter: drop-shadow(-4px 1px 0 #00000020);
+    -webkit-filter: drop-shadow(-4px 1px 0 #00000020);
+    transition: 0.5s cubic-bezier(.07,1.16,.24,.87);
+}
+
+.stamp-outline {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.stamp-bottom {
+    position: absolute;
+    bottom: -13px;
+    width: 100%;
+    pointer-events: none;
+    z-index: 7;
+}
+
+.stamp-open {
+    right: -100px;
+    transition: 0.75s cubic-bezier(.07,1.16,.09,1.06);
+}
+
+.stamp-filp {
+    position: absolute;
+    width: 45px;
+    height: 220px;
+    top: 55%;
+    transform: translateY(-50%);
+    left: 0;
+    z-index: 8;
+}
+
+.stamp-pass {
+    position: absolute;
+    width: 343px;
+    z-index: 5;
+    right: 143px;
+    top: 60%;
+    transform: translateY(-50%);
+    transition: 0.15s cubic-bezier(.07,1.16,.09,1.06);
+}
+
+.stamp-button {
+    position: absolute;
+    width: 150px;
+    right: 237px;
+    top: 15%;
+    transform: translateY(-50%);
+    transition: 0.15s cubic-bezier(.07,1.16,.09,1.06);
+    pointer-events: none;
+    z-index: 8;
+}
+
+.stamp-shadow {
+    position: absolute;
+    width: 115px;
+    right: 255px;
+    top: 36%;
+    transform: translateY(-50%);
+    transition: 0.15s cubic-bezier(.07,1.16,.09,1.06);
+    pointer-events: none;
+    z-index: 7;
+}
+
+.stamp-check1 {
+    background-image: url(../Asset/Texture/passport_stamp1.png);
+}
+
+.stamp-check2 {
+    background-image: url(../Asset/Texture/passport_stamp2.png);
+}
+
+.stamp-check3 {
+    background-image: url(../Asset/Texture/passport_stamp3.png);
+}
+
+.stamp-down {
+    transform: translateY(-35%);
+}
+
+.stamp-btn-down {
+    transform: translateY(-10%);
+}
+
+.stamp-shadow-down {
+    transform: translateY(15%) scaleX(130%);
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+}
+
+.paper-left,
+.paper-right {
+    width: 42px;
+    height: 42px;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    bottom: 0;
+}
+
+.paper-left {
+    background-image: url(../Asset/Texture/paper_left.png);
+    filter: drop-shadow(-4px 4px 0 #00000020);
+    -webkit-filter: drop-shadow(-4px 4px 0 #00000020);
+    left: 0;
+}
+
+.paper-right {
+    background-image: url(../Asset/Texture/paper_right.png);
+    filter: drop-shadow(4px 4px 0 #00000020);
+    -webkit-filter: drop-shadow(4px 4px 0 #00000020);
+    right: 0;
+}
+
+.disable {
+    opacity: 0.0;
+    pointer-events: none;
 }

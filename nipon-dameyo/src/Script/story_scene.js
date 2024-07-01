@@ -27,6 +27,8 @@ function text_gen() {
             }
             vse = randint(1, 3);
             PlayAudio(`Asset/Audio/SE/speech${vse}.mp3`, 0.6);
+            // vse = randint(0, 3);
+            // PlayAudio(`Asset/Audio/SE/typing${vse}.mp3`, 0.6);
         }, i * 55 + randint(0, 25));
     }
     setTimeout(() => {
