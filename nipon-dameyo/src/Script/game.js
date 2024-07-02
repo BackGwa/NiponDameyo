@@ -59,6 +59,7 @@ function dm_event() {
     });
 
     window.addEventListener("mousemove", (e) => {
+        let caliview;
         if (moving && !submit) {
             write("pps", pps);
             write("submit", submit);
@@ -69,6 +70,7 @@ function dm_event() {
                 dm_item.forEach((i) => {
                     write("passport drop", i);
                     if (i.classList.contains("z-up") && i.classList.contains("passport-size")) {
+                        caliview = i;
                         write("passport drop", i);
                         i.classList.add("passport-small");
                         pps = true;
@@ -86,6 +88,11 @@ function dm_event() {
         }
 
         if (pps) {
+            write("caliview", caliview);
+            viewinfo = caliview.getBoundingClientRect();
+            write("viewinfo", viewinfo);
+            caliview.style.top = `${e.offsetY - (viewinfo.height / 2)}px`;
+            write("moving passport", e.offsetY - (viewinfo.height / 2));
             mp.classList.add("mpshow");
             mp.style.top = `${e.offsetY - 36}px`;
             mp.style.left = `${e.offsetX - 36}px`;
@@ -134,11 +141,32 @@ function dm_event() {
 
         i.addEventListener("mousemove", (e) => {
             if (moving && i.classList.contains("z-up")) {
+                const top = parseInt(i.style.top.substring(0, i.style.top.length - 2));
+                const left = parseInt(i.style.left.substring(0, i.style.left.length - 2));
                 write("Item Moving", e.target);
-                const top = i.style.top;
-                const left = i.style.left
-                i.style.top = `${parseInt(top.substring(0, top.length - 2)) + e.movementY}px`;
-                i.style.left = `${parseInt(left.substring(0, left.length - 2)) + e.movementX}px`;
+
+                write("Blocking Check", { "x" : i.style.left, "y" : i.style.top });
+                if (left < -150 || left > 1000) {
+                    write("left-right blocking", i.style.left);
+                    if (left < - 150) {
+                        i.style.left = `-150px`;
+                    } else {
+                        i.style.left = `1000px`;
+                    }
+                } else {
+                    i.style.left = `${left + e.movementX}px`;
+                }
+                
+                if (top < -200 || top > 600) {
+                    write("top-bottom blocking", i.style.top);
+                    if (top < -200) {
+                        i.style.top = `-200px`;
+                    } else {
+                        i.style.top = `600px`;
+                    }
+                } else {
+                    i.style.top = `${top + e.movementY}px`;
+                }
             }
         });
 

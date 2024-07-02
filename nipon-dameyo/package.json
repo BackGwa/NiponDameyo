@@ -10,44 +10,13 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
-    "deploy:osx": "electron-builder --mac",
-    "deploy:win": "npm run deploy:win32 && npm run deploy:win64",
-    "deploy:win32": "electron-builder --win nsis:ia32",
-    "deploy:win64": "electron-builder --win nsis:x64"
-  },
-  "build": {
-    "productName": "배반자 나오라우",
-    "appId": "kr.kro.playlabs.nipondameyo",
-    "asar": true,
-    "mac": {
-      "target": [
-        "default"
-      ]
-    },
-    "dmg": {
-      "title": "배반자 나오라우"
-    },
-    "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        }
-      ]
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": false,
-      "createDesktopShortcut": true
-    },
-    "directories": {
-      "buildResources": "./output/installer",
-      "output": "./dist/",
-      "app": "."
-    }
+    "build:osx": "electron-builder --mac",
+    "build:linux": "npm run build:linux32 && npm run build:linux64",
+    "build:linux32": "electron-builder --linux --ia32",
+    "build:linux64": "electron-builder --linux --x64",
+    "build:win": "npm run build:win32 && npm run build:win64",
+    "build:win32": "electron-builder --win portable --ia32",
+    "build:win64": "electron-builder --win portable --x64"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
@@ -70,5 +39,9 @@
   "dependencies": {
     "electron-reload": "^2.0.0-alpha.1",
     "electron-squirrel-startup": "^1.0.1"
+  },
+  "build": {
+    "productName": "배반자 나오라우",
+    "appId": "playlabs.nipondameyo"
   }
 }

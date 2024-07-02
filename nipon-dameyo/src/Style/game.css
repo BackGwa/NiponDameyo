@@ -285,6 +285,7 @@ kita-layer {
     line-height: 4rem;
     padding: 3rem;
     border: 3px dashed #ca2e2c;
+    pointer-events: none;
 }
 
 .date-view {
@@ -437,7 +438,8 @@ kita-layer {
 }
 
 .passport-small {
-    display: none !important;
+    opacity: 0.0 !important;
+    pointer-events: none;
 }
 
 .mini-passport {

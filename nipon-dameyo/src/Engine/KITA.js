@@ -1,6 +1,7 @@
 const originalQuerySelector = Document.prototype.querySelector;
 const originalQuerySelectorAll = Document.prototype.querySelectorAll;
-
+let ConsoleWarn = console.warn;
+let ConsoleError = console.error;
 
 function PlayAudio(src, volume = 1.0) {
     write("PlayAudio", {"src" : src, "volume" : volume});
@@ -44,7 +45,22 @@ function EngineInit() {
         return result;
     };
 
+    console.warn = function () {
+        var message = [].join.call(arguments, " ");
+        write("WARNING", `${message}`, true, false);
+        ConsoleWarn.apply(console, arguments);
+    };
+
+    console.error = function () {
+        var message = [].join.call(arguments, " ");
+        write("ERROR" ,`${message}`, false, true);
+        ConsoleError.apply(console, arguments);
+    };    
+
     write("KITA Engine initialization", "Start");
+
+    console.warn("Logger Test 1");
+    console.error("Logger Test 2");
 
     window_button = document.querySelectorAll('button');
     write("Interaction Register", "Start");
@@ -73,11 +89,11 @@ function randint(min, max) {
     return result
 }
 
-function write(head, content) {
+function write(head, content, warn = false, error = false) {
     console.log(head, content);
 
-    if (logger.innerHTML.length > 5000) {
-        logger.innerText = "";
+    if (logger.innerHTML.length > 6000) {
+        logger.innerHTML = logger.innerText.substring(3000, 3000);
     }
 
     try {
@@ -89,8 +105,15 @@ function write(head, content) {
         } else {
             ftent = content;
         }
-        logger.innerHTML += `<br><b>${head}</b> -> `;
-        logger.innerText += ` ${ftent}`;
+
+        if (warn) {
+            logger.innerHTML += `<pre class="warning">${head} -> ${ftent}</pre>`;
+        } else if (error) {
+            logger.innerHTML += `<pre class="error">${head} -> ${ftent}</pre>`;
+        } else {
+            logger.innerHTML += `<pre>${head} -> ${ftent}</pre>`;
+        }
+
     } catch {
         console.error("Debuuger is Not Availed!");
     }
@@ -102,7 +125,7 @@ function getAttributes(el) {
         .reduce((acc, attr) => {
         acc[attr[0]] = attr[1]
         return acc
-        }, {})
+    }, {})
 }
 
 class KitaFPS extends HTMLElement {
@@ -175,7 +198,7 @@ class KitaFPS extends HTMLElement {
         ctx.fill();
 
         ctx.fillStyle = 'white';
-        ctx.font = '18px monospace';
-        ctx.fillText(`${Math.round(currentFPS)}`, width - 28, height - 10);
+        ctx.font = '20px monospace';
+        ctx.fillText(`${Math.round(currentFPS)}`, width - 28, height - 6);
     }
 }

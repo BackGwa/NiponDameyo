@@ -6,6 +6,19 @@
     cursor: url("../Asset/Texture/cursor.png"), default;
 }
 
+.debugmode * {
+    border: 1px solid #ff000040 !important;
+}
+
+.debugmode *:hover {
+    border: 1px solid #ffff0080 !important;
+}
+
+.reduce-mode * {
+    animation: none !important;
+    transition: none !important;
+}
+
 html, body {
     width: 100vw;
     height: 100vh;
@@ -23,17 +36,25 @@ kita-layer {
     overflow: hidden;
     background: #000;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50%);
     pointer-events: all;
+    top: 50%;
 }
 
 kita-logger {
+    display: none;
+}
+
+.debugmode kita-logger {
     position: absolute;
-    height: fit-content;
+    height: 20rem;
     z-index: 100;
     text-align: left;
     font-family: monospace;
     white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
     color: #ffffff;
     font-size: 0.75rem;
     overflow-x: hidden;
@@ -52,11 +73,29 @@ kita-logger {
 }
 
 kita-fps {
+    display: none;
+}
+
+.debugmode kita-fps {
     position: absolute;
     width: fit-content;
     height: fit-content;
+    display: block;
     z-index: 100;
     bottom: 0;
     right: 0;
     background: #00000050;
+}
+
+.warning {
+    color: #ffff00 !important;
+}
+
+.error {
+    color: #ff0000 !important;
+}
+
+pre {
+    margin: 0;
+    padding: 0;
 }
