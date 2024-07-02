@@ -40,11 +40,7 @@ kita-layer {
 }
 
 .infomation::after {
-    content: "2024 - 아산스마트팩토리마이스터고 게임개발부 (PLAYLABS)";
-}
-
-.infomation:hover::after {
-    content: "제작 : 강찬영, 한재경, 김국호, 상훈";
+    content: "2024 - 아산스마트팩토리마이스터고 게임개발부";
 }
 
 .game-version::after {
@@ -64,6 +60,10 @@ kita-layer {
     white-space: nowrap;
     font-size: 1.2rem;
     opacity: 0.0;
+}
+
+.engine-version::after {
+    content: "PLAYLABS에 의해 제작 됨";
 }
 
 .game-version {

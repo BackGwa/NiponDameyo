@@ -1,95 +1,123 @@
 const originalQuerySelector = Document.prototype.querySelector;
 const originalQuerySelectorAll = Document.prototype.querySelectorAll;
+const originalSetTimeout = window.setTimeout;
 let ConsoleWarn = console.warn;
 let ConsoleError = console.error;
 
 function PlayAudio(src, volume = 1.0) {
-    write("PlayAudio", {"src" : src, "volume" : volume});
-    var audio = document.createElement('audio');
-    audio.src = src;
-    document.body.appendChild(audio);
-    audio.play();
-    audio.volume = volume;
-    audio.onended = () => {
-        write("PlayAudio", `Destroyed ${src}`);
-        audio.remove();
-    };
+    try {
+        write("PlayAudio", { "src": src, "volume": volume }, false, false, true);
+        var audio = document.createElement('audio');
+        audio.src = src;
+        document.body.appendChild(audio);
+        audio.play();
+        audio.volume = volume;
+        audio.onended = () => {
+            write("PlayAudio", `Destroyed ${src}`, false, false, false, true);
+            audio.remove();
+        };
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 function PlayAnimation(target, className, reset = false) {
-    write("PlayAnimation", {"className" : className, "reset" : reset});
-    target.classList.add(className);
-    if (reset) {
-        target.addEventListener('animationend', () => {
-            write("PlayAnimation", `${className} is reset!`);
-            target.classList.remove(className);
-            target.removeEventListener('animationend', null);
-        });
+    try {
+        write("PlayAnimation", { "className": className, "reset": reset }, false, false, true);
+        target.classList.add(className);
+        if (reset) {
+            target.addEventListener('animationend', () => {
+                write("PlayAnimation", `${className} is reset!`, false, false, false, true);
+                target.classList.remove(className);
+                target.removeEventListener('animationend', null);
+            });
+        }
+    } catch (e) {
+        console.error(e);
     }
 }
 
 function EngineInit() {
     kita = document.querySelector('kita-layer');
     logger = document.querySelector('kita-logger');
+    var_monitor = document.querySelector("var-monitor");
     customElements.define('kita-fps', KitaFPS);
 
-    Document.prototype.querySelector = function(selector) {
-        const result = originalQuerySelector.call(this, selector);
-        write("querySelector", selector);
-        return result;
-    };
+    try {
+        Document.prototype.querySelector = function (selector) {
+            const result = originalQuerySelector.call(this, selector);
+            write("querySelector", selector, false, false, false, false, true);
+            return result;
+        };
 
-    Document.prototype.querySelectorAll = function(selector) {
-        const result = originalQuerySelectorAll.call(this, selector);
-        write("querySelectorAll", selector);
-        return result;
-    };
+        Document.prototype.querySelectorAll = function (selector) {
+            const result = originalQuerySelectorAll.call(this, selector);
+            write("querySelectorAll", selector, false, false, false, false, true);
+            return result;
+        };
 
-    console.warn = function () {
-        var message = [].join.call(arguments, " ");
-        write("WARNING", `${message}`, true, false);
-        ConsoleWarn.apply(console, arguments);
-    };
+        window.setTimeout = function (callback, delay, ...args) {
+            write("Start Timeout", `${delay}ms`, false, false, true);
+            const wrappedCallback = () => {
+                write("End Timeout", `${delay}ms`, false, false, false, true);
+                callback(...args);
+            };
 
-    console.error = function () {
-        var message = [].join.call(arguments, " ");
-        write("ERROR" ,`${message}`, false, true);
-        ConsoleError.apply(console, arguments);
-    };    
+            return originalSetTimeout(wrappedCallback, delay);
+        };
 
-    write("KITA Engine initialization", "Start");
+        console.warn = function () {
+            var message = [].join.call(arguments, " ");
+            write("WARNING", `${message}`, true, false);
+            ConsoleWarn.apply(console, arguments);
+        };
 
-    console.warn("Logger Test 1");
-    console.error("Logger Test 2");
+        console.error = function () {
+            var message = [].join.call(arguments, " ");
+            write("ERROR", `${message}`, false, true);
+            ConsoleError.apply(console, arguments);
+        };
 
-    window_button = document.querySelectorAll('button');
-    write("Interaction Register", "Start");
-    window_button.forEach(i => {
-        write("Interaction Register", i);
-        i.addEventListener('click', () => {
-            PlayAudio("Asset/Audio/SE/button_click.mp3");
+        write("KITA Engine initialization", "Start", false, false, true);
+
+        console.warn("Logger Test 1");
+        console.error("Logger Test 2");
+
+        window_button = document.querySelectorAll('button');
+        write("Interaction Register", "Start", false, false, true);
+        window_button.forEach(i => {
+            write("Interaction Register", i);
+            i.addEventListener('click', () => {
+                PlayAudio("Asset/Audio/SE/button_click.mp3");
+            });
+
+            i.addEventListener('mouseenter', () => {
+                PlayAudio("Asset/Audio/SE/button_down.mp3");
+            });
+            i.addEventListener('mouseleave', () => {
+                PlayAudio("Asset/Audio/SE/button_up.mp3");
+            })
         });
+        write("Interaction Register", "End", false, false, false, true);
 
-        i.addEventListener('mouseenter', () => {
-            PlayAudio("Asset/Audio/SE/button_down.mp3");
-        });
-        i.addEventListener('mouseleave', () => {
-            PlayAudio("Asset/Audio/SE/button_up.mp3");
-        })
-    });
-
-    write("Interaction Register", "End");
-
-    write("KITA Engine initialization", "End");
+        write("KITA Engine initialization", "End", false, false, false, true);
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 function randint(min, max) {
-    result = Math.floor(Math.random() * (max - min + 1)) + min;
-    write("randint", {"mix" : min, "max" : max, "result" : result});
-    return result
+    try {
+        result = Math.floor(Math.random() * (max - min + 1)) + min;
+        write("randint", { "mix": min, "max": max, "result": result });
+        return result
+    } catch (e) {
+        console.error(e);
+        return min;
+    }
 }
 
-function write(head, content, warn = false, error = false) {
+function write(head, content, warn = false, error = false, warp1 = false, warp2 = false, warp3 = false) {
     console.log(head, content);
 
     if (logger.innerHTML.length > 6000) {
@@ -110,22 +138,32 @@ function write(head, content, warn = false, error = false) {
             logger.innerHTML += `<pre class="warning">${head} -> ${ftent}</pre>`;
         } else if (error) {
             logger.innerHTML += `<pre class="error">${head} -> ${ftent}</pre>`;
+        } else if (warp1) {
+            logger.innerHTML += `<pre class="warp1">${head} -> ${ftent}</pre>`;
+        } else if (warp2) {
+            logger.innerHTML += `<pre class="warp2">${head} -> ${ftent}</pre>`;
+        } else if (warp3) {
+            logger.innerHTML += `<pre class="warp3">${head} -> ${ftent}</pre>`;
         } else {
             logger.innerHTML += `<pre>${head} -> ${ftent}</pre>`;
         }
 
-    } catch {
-        console.error("Debuuger is Not Availed!");
+    } catch (e) {
+        console.error(e);
     }
 }
 
 function getAttributes(el) {
-    return Array.from(el.attributes)
-        .map(a => [a.name, a.value])
-        .reduce((acc, attr) => {
-        acc[attr[0]] = attr[1]
-        return acc
-    }, {})
+    try {
+        return Array.from(el.attributes)
+            .map(a => [a.name, a.value])
+            .reduce((acc, attr) => {
+                acc[attr[0]] = attr[1]
+                return acc
+            }, {})
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 class KitaFPS extends HTMLElement {
@@ -190,7 +228,7 @@ class KitaFPS extends HTMLElement {
         ctx.closePath();
 
         if (currentFPS >= 30) {
-            ctx.fillStyle = 'rgba(0, 255, 0, 0.5)'; 
+            ctx.fillStyle = 'rgba(0, 255, 0, 0.5)';
         } else {
             ctx.fillStyle = 'rgba(255, 0, 0, 0.75)';
         }
@@ -200,5 +238,26 @@ class KitaFPS extends HTMLElement {
         ctx.fillStyle = 'white';
         ctx.font = '20px monospace';
         ctx.fillText(`${Math.round(currentFPS)}`, width - 28, height - 6);
+    }
+}
+
+function monitor() {
+    write("Variable Monitor", "Sync Start", false, false, true);
+    try {
+        var_monitor.innerHTML = "";
+        for (let key in window) {
+            if (window.hasOwnProperty(key)) {
+                var_monitor.innerHTML += `
+                    <div class="m-item">
+                        <div class="m-title">${key}</div>
+                        <pre class="m-value">${String(window[key]).replace(/</g, "＜").replace(/>/g, "＞")}</pre>
+                    </div>
+                `
+            }
+        }
+        var_monitor.innerHTML += `<button onclick="monitor();">Variable Sync</button>`;
+        write("Variable Monitor", "Sync End", false, false, false, true);
+    } catch (e) {
+        console.error(e);
     }
 }
