@@ -65,12 +65,12 @@ kita-layer {
 }
 
 .person-area {
-    width: 40rem;
+    width: 35rem;
     background: #1D1415;
 }
 
 .detect-area {
-    width: calc(100% - 40rem);
+    width: calc(100% - 35rem);
     background: #0F0B0A;
 }
 
@@ -195,7 +195,7 @@ kita-layer {
 
 .cost-size {
     background-image: url(../Asset/Texture/paper.png);
-    background: #e9ebea;
+    background-color: transparent;
     width: 19rem;
     height: 24rem;
 }
@@ -295,9 +295,9 @@ kita-layer {
 
 .stamp {
     position: absolute;
-    width: 570px;
-    height: 331px;
-    right: -533px;
+    width: 470px;
+    height: 231px;
+    right: -433px;
     top: 40%;
     transform: translateY(-50%);
     z-index: 5;
@@ -315,22 +315,22 @@ kita-layer {
 
 .stamp-bottom {
     position: absolute;
-    bottom: -13px;
+    bottom: -50px;
     width: 100%;
     pointer-events: none;
     z-index: 7;
 }
 
 .stamp-open {
-    right: -100px;
+    right: -80px;
     transition: 0.75s cubic-bezier(.07,1.16,.09,1.06);
 }
 
 .stamp-filp {
     position: absolute;
-    width: 45px;
-    height: 220px;
-    top: 55%;
+    width: 35px;
+    height: 165px;
+    top: 65%;
     transform: translateY(-50%);
     left: 0;
     z-index: 8;
@@ -338,9 +338,9 @@ kita-layer {
 
 .stamp-pass {
     position: absolute;
-    width: 343px;
+    width: 273px;
     z-index: 5;
-    right: 143px;
+    right: 119px;
     top: 60%;
     transform: translateY(-50%);
     transition: 0.15s cubic-bezier(.07,1.16,.09,1.06);
@@ -348,8 +348,8 @@ kita-layer {
 
 .stamp-button {
     position: absolute;
-    width: 150px;
-    right: 237px;
+    width: 105px;
+    right: 206px;
     top: 15%;
     transform: translateY(-50%);
     transition: 0.15s cubic-bezier(.07,1.16,.09,1.06);
@@ -359,9 +359,9 @@ kita-layer {
 
 .stamp-shadow {
     position: absolute;
-    width: 115px;
-    right: 255px;
-    top: 36%;
+    width: 95px;
+    right: 210px;
+    top: 33%;
     transform: translateY(-50%);
     transition: 0.15s cubic-bezier(.07,1.16,.09,1.06);
     pointer-events: none;
@@ -389,9 +389,7 @@ kita-layer {
 }
 
 .stamp-shadow-down {
-    transform: translateY(15%) scaleX(130%);
-    filter: blur(1px);
-    -webkit-filter: blur(1px);
+    transform: translateY(15%) scaleX(120%);
 }
 
 .paper-left,
@@ -444,7 +442,7 @@ kita-layer {
 
 .mini-passport {
     position: absolute;
-    width: 72px;
+    width: 84px;
     pointer-events: none;
     filter: drop-shadow(2px 8px 0 #ffffff10);
     display: none;
@@ -452,7 +450,7 @@ kita-layer {
 }
 
 .mpshow {
-    display: block;
+    display: block !important;
 }
 
 .mpani {
@@ -468,4 +466,29 @@ kita-layer {
     100% {
         transform: translateY(500%);
     }
+}
+
+.tooltip {
+    width: calc(557px / 3.5);
+    height: calc(133px / 3.5);
+    background: url(../Asset/Texture/tooltip.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+    display: none;
+}
+
+.mini-tip {
+    position: absolute;
+    left: 50%;
+    transform: translateY(-50%);
+    bottom: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    pointer-events: none;
+    color: #3d2f29;
+    font-family: "PFStardust";
 }

@@ -9,6 +9,7 @@ function init() {
     try {
         stamp = document.querySelector(".stamp");
         mp = document.querySelector(".mini-passport");
+        tt = document.querySelector(".tooltip");
     
         setTimeout(() => {
             kita.classList.add("fade-opening");
@@ -54,8 +55,14 @@ function dm_event() {
             if (pps) {
                 submit = true;
                 mp.classList.remove("mpshow");
+                tt.classList.remove("mpshow");
                 PlayAnimation(mp, "mpani", true);
+                PlayAudio(`Asset/Audio/SE/passport_up.mp3`, 1);
                 pps = false;
+
+                setTimeout(() => {
+                    PlayAudio(`Asset/Audio/SE/passport_down.mp3`, 1);
+                }, 100)
             }
             moving = false;
             dm_item.forEach((i) => {
@@ -108,10 +115,14 @@ function dm_event() {
                 caliview.style.top = `${e.offsetY - (viewinfo.height / 2)}px`;
                 write("moving passport", e.offsetY - (viewinfo.height / 2));
                 mp.classList.add("mpshow");
-                mp.style.top = `${e.offsetY - 36}px`;
-                mp.style.left = `${e.offsetX - 36}px`;
+                tt.classList.add("mpshow");
+                mp.style.top = `${e.offsetY - 42}px`;
+                mp.style.left = `${e.offsetX - 42}px`;
+                tt.style.top = `${e.offsetY - 75}px`;
+                tt.style.left = `${e.offsetX - 82}px`;
             } else {
                 mp.classList.remove("mpshow");
+                tt.classList.remove("mpshow");
             }
         } catch (e) {
             console.error(e);
@@ -172,12 +183,12 @@ function dm_event() {
                     write("Item Moving", e.target);
     
                     write("Blocking Check", { "x" : i.style.left, "y" : i.style.top });
-                    if (left < -150 || left > 1000) {
+                    if (left < -150 || left > 1100) {
                         write("left-right blocking", i.style.left, true);
                         if (left < - 150) {
                             i.style.left = `-150px`;
                         } else {
-                            i.style.left = `1000px`;
+                            i.style.left = `1100px`;
                         }
                     } else {
                         i.style.left = `${left + e.movementX}px`;
@@ -234,7 +245,7 @@ function stamp_collision() {
                 ppy = p_pos.y + p_pos.height;
 
                 if ((pos.x - 50 <= ppx && ppx <= sx + 50) &&
-                    (pos.y + 650 <= ppy && ppy <= sy + 400) &&
+                    (pos.y + 460 <= ppy && ppy <= sy + 390) &&
                     !i.classList.contains("stamp-status")) 
                 {
                     write("stamp", "Permitted", false, false, true);
@@ -338,4 +349,8 @@ function page_chk(target, now, max) {
     } catch (e) {
         console.error(e);
     }
+}
+
+function new_chat(text) {
+
 }

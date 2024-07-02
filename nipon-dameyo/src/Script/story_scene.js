@@ -4,7 +4,7 @@ function init() {
     kita.classList.add("fade-opening");
     text = document.querySelector(".story-text");
     image = document.querySelector(".story-image");
-    btn = document.querySelector("button");
+    btn = document.querySelector(".story-btn");
     text_index = 0;
 
     setTimeout(() => {
@@ -27,7 +27,7 @@ function text_gen() {
             }
             vse = randint(1, 3);
             PlayAudio(`Asset/Audio/SE/speech${vse}.mp3`, 0.6);
-        }, i * 55 + randint(0, 25));
+        }, i * 55);
     }
     setTimeout(() => {
         btn.disabled = false;
