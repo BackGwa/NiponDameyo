@@ -340,7 +340,7 @@ kita-layer {
     position: absolute;
     width: 273px;
     z-index: 5;
-    right: 119px;
+    right: 121.5px;
     top: 60%;
     transform: translateY(-50%);
     transition: 0.15s cubic-bezier(.07,1.16,.09,1.06);
@@ -349,7 +349,7 @@ kita-layer {
 .stamp-button {
     position: absolute;
     width: 105px;
-    right: 206px;
+    right: 205px;
     top: 15%;
     transform: translateY(-50%);
     transition: 0.15s cubic-bezier(.07,1.16,.09,1.06);
@@ -360,7 +360,7 @@ kita-layer {
 .stamp-shadow {
     position: absolute;
     width: 95px;
-    right: 210px;
+    right: 210.5px;
     top: 33%;
     transform: translateY(-50%);
     transition: 0.15s cubic-bezier(.07,1.16,.09,1.06);
@@ -479,13 +479,15 @@ kita-layer {
     z-index: 10;
     pointer-events: none;
     display: none;
+    filter: drop-shadow(0 0 12px #00000070);
+    -webkit-filter: drop-shadow(0 0 12px #00000070);
 }
 
 .mini-tip {
     position: absolute;
     left: 50%;
-    transform: translateY(-50%);
-    bottom: 1rem;
+    transform: translateX(-50%);
+    bottom: 1.2rem;
     font-size: 1.2rem;
     line-height: 1.2rem;
     pointer-events: none;

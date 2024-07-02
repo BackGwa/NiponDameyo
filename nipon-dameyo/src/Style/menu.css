@@ -30,6 +30,7 @@ kita-layer {
 .infomation {
     position: absolute;
     font-family: 'PFStardust';
+    line-height: 1.2rem;
     bottom: 3rem;
     color: #586058;
     left: 50%;
@@ -41,6 +42,10 @@ kita-layer {
 
 .infomation::after {
     content: "2024 - 아산스마트팩토리마이스터고 게임개발부";
+}
+
+.infomation:hover::after {
+    content: "제작진 : 강찬영, 한재경, 김국호, 상훈";
 }
 
 .game-version::after {
@@ -56,6 +61,7 @@ kita-layer {
     font-family: 'PFStardust';
     left: 3rem;
     bottom: 3rem;
+    line-height: 1.2rem;
     color: #586058;
     white-space: nowrap;
     font-size: 1.2rem;
@@ -71,6 +77,7 @@ kita-layer {
     font-family: 'PFStardust';
     right: 3rem;
     bottom: 3rem;
+    line-height: 1.2rem;
     color: #586058;
     white-space: nowrap;
     font-size: 1.2rem;
