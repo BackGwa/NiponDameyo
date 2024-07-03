@@ -92,14 +92,20 @@ function EngineInit() {
                 usage.innerHTML += `<pre>${data.cpuUsage.toFixed(2)}%</pre><br>`;
             }
 
-            usage.innerHTML += `Memory Usage`;
-            if (data.memUsage >= data.totalMemGiB - 2) {
+            usage.innerHTML += `System Memory Usage`;
+            if (data.usedMemGiB >= data.totalMemGiB - 2) {
                 usage.innerHTML += `<pre class="error">${data.memUsage.toFixed(2)}% (${data.usedMemGiB.toFixed(2)}GiB/${data.totalMemGiB.toFixed(2)}GiB)</pre><br>`;
-            } else if (data.memUsage >= data.totalMemGiB - 4) {
+            } else if (data.usedMemGiB >= data.totalMemGiB - 4) {
                 usage.innerHTML += `<pre class="warning">${data.memUsage.toFixed(2)}% (${data.usedMemGiB.toFixed(2)}GiB/${data.totalMemGiB.toFixed(2)}GiB)</pre><br>`;
             } else {
                 usage.innerHTML += `<pre>${data.memUsage.toFixed(2)}% (${data.usedMemGiB.toFixed(2)}GiB/${data.totalMemGiB.toFixed(2)}GiB)</pre><br>`;
             }
+
+            usage.innerHTML += `Resident Set Size`;
+            usage.innerHTML += `<pre>${data.rss}MiB</pre><br>`;
+
+            usage.innerHTML += `Heap`;
+            usage.innerHTML += `<pre>${data.heapUsed}MiB / ${data.heapTotal}MiB</pre><br>`;
         });
 
         write("KITA Engine initialization", "Start", false, false, true);

@@ -10,6 +10,7 @@ function init() {
         mp = document.querySelector(".mini-passport");
         tt = document.querySelector(".tooltip");
         itr = document.querySelector(".interrogate");
+        search = document.querySelector(".search");
     
         setTimeout(() => {
             kita.classList.add("fade-opening");
@@ -136,14 +137,21 @@ function dm_event() {
     
                 dm_item.forEach((j) => {
                     j.classList.remove("z-up");
+                    j.classList.remove("z-up-i");
                 });
+
                 i.classList.add("z-up");
-    
+                
+                if (interrogate) {
+                    i.classList.add("z-up-i");
+                }
+
                 if (e.target.className == "paper-left" || e.target.className == "paper-right") {
                     return;
                 }
     
-                if (e.target.className.includes("passport-size")) {
+                if (e.target.className.includes("passport-size") ||
+                    e.target.className.includes("note-size")) {
                     PlayAudio(`Asset/Audio/SE/passport_up.mp3`, 1);
                 } else {
                     PlayAudio(`Asset/Audio/SE/paper_pick_up.mp3`, 0.2);
@@ -165,7 +173,9 @@ function dm_event() {
                     return;
                 }
     
-                if (e.target.className.includes("passport-size")) {
+                if (e.target.className.includes("passport-size") ||
+                    e.target.className.includes("note-size")
+                ) {
                     PlayAudio(`Asset/Audio/SE/passport_down.mp3`, 0.5);
                 } else {
                     PlayAudio(`Asset/Audio/SE/paper_pick_down.mp3`, 0.2);
@@ -357,14 +367,19 @@ function new_chat(text) {
 
 function interrogate_toggle() {
     interrogate = !interrogate;
+    dm_item.forEach((j) => {
+        j.classList.remove("z-up-i");
+    });
     PlayAnimation(itr, "itr-animation", true);
     setTimeout(() => {
         if (interrogate) {
             itr.classList.add("itr-start");
+            search.classList.add("search-start");
             PlayAudio(`Asset/Audio/SE/itr_open.mp3`, 0.7);
             document.querySelector(".itr-filter").classList.add("itr-filter-enable");
         } else {
             itr.classList.remove("itr-start");
+            search.classList.remove("search-start");
             PlayAudio(`Asset/Audio/SE/itr_close.mp3`, 0.7);
             document.querySelector(".itr-filter").classList.remove("itr-filter-enable");
         }

@@ -83,6 +83,7 @@ kita-fps {
     bottom: 0;
     right: 0;
     background: #00000050;
+    pointer-events: none;
 }
 
 .warning {
@@ -118,6 +119,7 @@ pre {
 
 kita-version {
     display: none;
+    pointer-events: none;
 }
 
 .debugmode kita-version {

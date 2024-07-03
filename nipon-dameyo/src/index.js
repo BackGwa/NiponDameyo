@@ -35,11 +35,22 @@ const createWindow = () => {
       const usedMemGiB = usedMem / 1024;
       const totalMemGiB = totalMem / 1024;
 
+      const memoryUsage = process.memoryUsage();
+      const rss = memoryUsage.rss / 1024 / 1024;
+      const heapTotal = memoryUsage.heapTotal / 1024 / 1024;
+      const heapUsed = memoryUsage.heapUsed / 1024 / 1024;
+      const external = memoryUsage.external / 1024 / 1024;
+
+
       mainWindow.webContents.send('usage-data', {
         cpuUsage: cpuUsage * 100,
         memUsage: memUsage * 100,
         usedMemGiB: usedMemGiB,
-        totalMemGiB: totalMemGiB
+        totalMemGiB: totalMemGiB,
+        rss: rss.toFixed(2),
+        heapTotal: heapTotal.toFixed(2),
+        heapUsed: heapUsed.toFixed(2),
+        external: external.toFixed(2)
       });
     });
   }, 500);

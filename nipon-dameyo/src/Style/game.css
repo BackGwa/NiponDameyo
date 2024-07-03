@@ -195,6 +195,13 @@ kita-layer {
     transition: none;
 }
 
+.z-up-i {
+    z-index: 11 !important;
+    border: solid 12px transparent;
+    box-shadow: 0 0 0 4px #ffffff;
+    scale: 110%;
+}
+
 .cost-size {
     background-image: url(../Asset/Texture/paper.png);
     background-color: transparent;
@@ -234,6 +241,11 @@ kita-layer {
     height: calc(100% - 2rem);
     margin: 1rem 2rem 1rem 2.25rem;
     color: #534845;
+}
+
+.note-size p img {
+    width: 100%;
+    height: 100%;
 }
 
 .paper-mark {
@@ -276,13 +288,13 @@ kita-layer {
 
 
 .scale-up {
-    transform: rotate(-1deg) scale(105%) !important;
+    transform: rotate(-1deg) scale(101%) !important;
     filter: drop-shadow(12px 12px 1px #00000025) drop-shadow(0px 0px 4px #0000001a);
     -webkit-filter: drop-shadow(12px 12px 1px #00000025) drop-shadow(0px 0px 4px #0000001a);
 }
 
 .scale-up:not(.cost-size) {
-    transform: rotate(0deg) scale(105%) !important;
+    transform: rotate(0deg) scale(101%) !important;
 }
 
 .date-counter {
@@ -496,8 +508,8 @@ kita-layer {
     z-index: 10;
     pointer-events: none;
     display: none;
-    filter: drop-shadow(0 0 12px #000000a7);
-    -webkit-filter: drop-shadow(0 0 12px #000000a7);
+    filter: drop-shadow(0 4px 0 #000000a7);
+    -webkit-filter: drop-shadow(0 4px 0 #000000a7);
 }
 
 .mini-tip {
@@ -524,7 +536,47 @@ kita-layer {
     background-image: url(../Asset/Texture/interrogate_enable.png);
     background-position: center;
     background-size: cover; 
-    z-index: 11;
+    z-index: 12;
+}
+
+.search {
+    position: absolute;
+    width: calc(1200px / 14);
+    height: calc(852px / 14);
+    outline: none;
+    border: none;
+    bottom: -25px;
+    left: -25px;
+    background-color: transparent;
+    background-image: url(../Asset/Texture/search.png);
+    background-position: center;
+    background-size: cover; 
+    z-index: 12;
+    opacity: 0.0;
+    pointer-events: none;
+    transition: 0.125s ease-in-out;
+}
+
+.search-start {
+    bottom: 0px;
+    left: 0px;
+    opacity: 1.0;
+    pointer-events: all;
+}
+
+.search span {
+    position: absolute;
+    color: #028d3c;
+    font-family: 'PFStardust';
+    opacity: 0.0;
+    font-size: 1.75rem;
+    line-height: 1.75rem;
+    font-weight: bold;
+    transition: 0.25s cubic-bezier(.24,1.1,.23,.92);
+    bottom: 0.5rem;
+    text-align: left;
+    right: 5rem;
+    white-space: nowrap;
 }
 
 .interrogate span {
@@ -547,9 +599,13 @@ kita-layer {
 }
 
 .itr-start span {
-    left: -6.5rem;
+    left: -6.75rem;
     opacity: 1.0;
+}
 
+.search-start span {
+    right: -7.25rem;
+    opacity: 1.0;
 }
 
 .itr-animation {
