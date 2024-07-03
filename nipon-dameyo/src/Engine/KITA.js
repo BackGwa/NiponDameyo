@@ -1,3 +1,4 @@
+
 const originalQuerySelector = Document.prototype.querySelector;
 const originalQuerySelectorAll = Document.prototype.querySelectorAll;
 const originalSetTimeout = window.setTimeout;
@@ -41,6 +42,7 @@ function EngineInit() {
     kita = document.querySelector('kita-layer');
     logger = document.querySelector('kita-logger');
     var_monitor = document.querySelector("var-monitor");
+    usage = document.querySelector("kita-version");
     customElements.define('kita-fps', KitaFPS);
 
     try {
@@ -77,6 +79,28 @@ function EngineInit() {
             write("ERROR", `${message}`, false, true);
             ConsoleError.apply(console, arguments);
         };
+
+        window.api.onUsageData((event, data) => {
+            usage.innerHTML = "<br><br>";
+
+            usage.innerHTML += `CPU Usage`;
+            if (data.cpuUsage >= 90) {
+                usage.innerHTML += `<pre class="error">${data.cpuUsage.toFixed(2)}%</pre><br>`;
+            } else if (data.cpuUsage >= 70) {
+                usage.innerHTML += `<pre class="warning">${data.cpuUsage.toFixed(2)}%</pre><br>`;
+            } else {
+                usage.innerHTML += `<pre>${data.cpuUsage.toFixed(2)}%</pre><br>`;
+            }
+
+            usage.innerHTML += `Memory Usage`;
+            if (data.memUsage >= data.totalMemGiB - 2) {
+                usage.innerHTML += `<pre class="error">${data.memUsage.toFixed(2)}% (${data.usedMemGiB.toFixed(2)}GiB/${data.totalMemGiB.toFixed(2)}GiB)</pre><br>`;
+            } else if (data.memUsage >= data.totalMemGiB - 4) {
+                usage.innerHTML += `<pre class="warning">${data.memUsage.toFixed(2)}% (${data.usedMemGiB.toFixed(2)}GiB/${data.totalMemGiB.toFixed(2)}GiB)</pre><br>`;
+            } else {
+                usage.innerHTML += `<pre>${data.memUsage.toFixed(2)}% (${data.usedMemGiB.toFixed(2)}GiB/${data.totalMemGiB.toFixed(2)}GiB)</pre><br>`;
+            }
+        });
 
         write("KITA Engine initialization", "Start", false, false, true);
 
@@ -255,7 +279,7 @@ function monitor() {
                 `
             }
         }
-        var_monitor.innerHTML += `<button onclick="monitor();">Variable Sync</button>`;
+        var_monitor.innerHTML += `<div class="db-btn" onclick="monitor();">Variable Sync</div>`;
         write("Variable Monitor", "Sync End", false, false, false, true);
     } catch (e) {
         console.error(e);

@@ -1,5 +1,4 @@
 function init() {
-    EngineInit();
     logo_image = document.querySelector('.logo-image');
     button_area = document.querySelector('.btn-ui');
     infomaton = document.querySelector('.infomation');

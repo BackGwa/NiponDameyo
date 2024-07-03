@@ -18,7 +18,6 @@
 
     <script>
         function init() {
-            EngineInit();
             setTimeout(() => { location.href = "index.html"; }, 11000);
         }
     </script>
@@ -30,7 +29,7 @@
     <kita-fps></kita-fps>
     <kita-logger></kita-logger>
     <kita-version></kita-version>
-    <var-monitor><button onclick="monitor();">Variable Sync</button></var-monitor>
+    <var-monitor><div class="db-btn" onclick="monitor();">Variable Sync</div></var-monitor>
 
     <kita-layer>
         <video src="Asset/Video/splash.mp4" autoplay></video>

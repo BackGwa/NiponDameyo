@@ -26,7 +26,7 @@
     <kita-fps></kita-fps>
     <kita-logger></kita-logger>
     <kita-version></kita-version>
-    <var-monitor><button onclick="monitor();">Variable Sync</button></var-monitor>
+    <var-monitor><div class="db-btn" onclick="monitor();">Variable Sync</div></var-monitor>
 
     <kita-layer>
         <div class="main-layer">
@@ -44,60 +44,47 @@
                 <div class="detect-area">
                     <!-- item test-->
                     <div id="paper3" class="document-item passport-size allow-stamp" style="top: 220px; left: 420px;">
+                        <div class="profile-area"></div>
                     </div>
 
-                    <div id="paper2" class="document-item cost-size" style="top: 200px; left: 700px;">
-                        <p class="pages page1">
-                            친애하는 조사관,<br>
-                            아마 조사가 만만치 않을 것이오,<br>
-                            <br>
-                            하지만, 너무 근심쓰지 말게.<br>
-                            <br><br>
-                            기쁜 소식이 하나 있다네.<br>
-                            친일파 녀석들에 대한, 특징말이오.<br>
-                            <br>
-                            분명 분명히 마음에 들 것이오.<br>
-                            <br><br>
-                            다음 장에 적어놓았으니<br>
-                            부디 도움이 되길 바라오.
-                        </p>
-                        <p class="pages page2 disable">
-                            만약 다음 중 하나라도 해당된다면,<br>
-                            반민족행위자이니, 사살하시오.<br>
-                            <br>
-                            다만, 눈치챈다면, 위험할 수 있소.<br>
-                            <br><br>
-                            1. 신분증과 일치하지 않음.<br>
-                            2. 엔화를 소지하고 있음.<br>
-                            3. 친일 증표를 소지하고 있음.<br>
-                            4. 총기를 소지하고 있음.<br>
-                            <br><br>
-                            명심하시오, 조사관.<br>
-                            절대 민간인을 사살해선 아니되오.<br>
-                        </p>
+                    <div id="paper2" class="document-item note-size note-bg" style="top: 150px; left: 800px;">
+                        <p class="pages page1">page1</p>
+                        <p class="pages page2 disable">page2</p>
+                        <p class="pages page3 disable">page3</p>
+                        <p class="pages page4 disable">page4</p>
+                        <p class="pages page5 disable">page5</p>
+                        <p class="pages page6 disable">page6</p>
+
                         <div class="paper-left disable" onclick="page_move('paper2', -1)"></div>
                         <div class="paper-right" onclick="page_move('paper2', 1)"></div>
                     </div>
 
-                    <div id="paper1" class="document-item cost-size" style="top: 180px; left: 660px;">
-                        <p>
+                    <div id="paper1" class="document-item cost-size" style="top: 200px; left: 700px;">
+                        <p class="pages page1">
                             대한민국 제1공화국<br>
                             반민특위 공식 공고<br>
                             <br>
-                            조사관,<br>
+                            친애하는 조사관들에게<br>
                             <br>
                             반민특위에서 반민족행위자에 대한<br>
                             조사를 맡게된걸 환영하오.<br>
                             <br>
-                            조사 후, 신분증에 도장을 찍고<br>
-                            대상에게 문서를 돌려주시오.<br>
+                            분명히 조사가 만만치 않을테지만,<br>
+                            우리들은 동지들을 믿소.<br>
                             <br>
-                            혹여나, 친일파로 확인된다면,<br>
-                            즉시 사살하시오.<br>
+                            같이 보낸 설명서를 참고해서,<br>
                             <br>
-                            친일파 청산을 위하여,
+                            대상을 조사하고, 확인 도장을 찍어<br>
+                            대상에게 돌려주시오.<br>
                         </p>
-                        <img src="./Asset/Texture/mark.png" class="paper-mark">
+                        <p class="pages page2 disable">
+                            명심하시오, 조사관.<br>
+                            절대 민간인을 사살해선 아니되오.<br>
+                            <img src="./Asset/Texture/mark.png" class="paper-mark">
+                        </p>
+
+                        <div class="paper-left disable" onclick="page_move('paper1', -1)"></div>
+                        <div class="paper-right" onclick="page_move('paper1', 1)"></div>
                     </div>
 
                     <img src="./Asset/Texture/work_bg.png" class="work-bg">
@@ -111,14 +98,13 @@
                         <div class="stamp-filp" onclick="stamp_filp();"></div>
                     </div>
 
-                    <!--
-                    <div class="handgun">
-                        <img src="./Asset/Texture/handgun.png" class="handgun-img">
+                    <div class="interrogate" onclick="interrogate_toggle();">
+                        <span>압박 심문</span>
                     </div>
-                    -->
 
                     <div class="mini-tip">이 곳으로 신분증이나 문서를 놓으십시오.</div>
                 </div>
+                <div class="itr-filter"></div>
             </div>
         </div>
 

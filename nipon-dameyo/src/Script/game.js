@@ -2,14 +2,14 @@ let moving;
 let isopen = false;
 let pps = false;
 let submit = false;
+let interrogate = false;
 
 function init() {
-    EngineInit();
-
     try {
         stamp = document.querySelector(".stamp");
         mp = document.querySelector(".mini-passport");
         tt = document.querySelector(".tooltip");
+        itr = document.querySelector(".interrogate");
     
         setTimeout(() => {
             kita.classList.add("fade-opening");
@@ -35,12 +35,12 @@ function init() {
             PlayAudio(`Asset/Audio/SE/paper_landing.mp3`, 0.6);
             document.querySelector("#paper2").classList.add("paper-print");
         }, 5500);
-    
+        
         setTimeout(() => {
             PlayAudio(`Asset/Audio/SE/paper_landing.mp3`, 0.6);
             document.querySelector("#paper3").classList.add("paper-print");
-        }, 6000);
-    
+        }, 5750);
+
         dm_item = document.querySelectorAll(".document-item");
         dm_event();   
     } catch (e) {
@@ -353,4 +353,20 @@ function page_chk(target, now, max) {
 
 function new_chat(text) {
 
+}
+
+function interrogate_toggle() {
+    interrogate = !interrogate;
+    PlayAnimation(itr, "itr-animation", true);
+    setTimeout(() => {
+        if (interrogate) {
+            itr.classList.add("itr-start");
+            PlayAudio(`Asset/Audio/SE/itr_open.mp3`, 0.7);
+            document.querySelector(".itr-filter").classList.add("itr-filter-enable");
+        } else {
+            itr.classList.remove("itr-start");
+            PlayAudio(`Asset/Audio/SE/itr_close.mp3`, 0.7);
+            document.querySelector(".itr-filter").classList.remove("itr-filter-enable");
+        }
+    }, 125);
 }

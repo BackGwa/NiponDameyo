@@ -126,27 +126,23 @@ kita-version {
     top: 0;
     left: 0;
     font-family: monospace;
+    color: #FFFFFF;
+    font-size: 0.75rem;
     white-space: pre-line;
     z-index: 100;
 }
 
 .debugmode kita-version::before {
-    color: #ffffff;
-    font-size: 0.75rem;
-    content: "KITA ENGINE v702 - Produced by PLAYLABS \A";
-}
-
-.debugmode kita-version::after {
     color: #ffff00;
-    font-size: 1rem;
-    content: "ENABLE DEBUG MODE";
+    font-size: 1.2rem;
+    content: "KITA ENGINE v703 - Produced by PLAYLABS (KANG CHANYOUNG) \A THIS IS A DEVELOPMENT VERSION. THE FINAL VERSION MAY DIFFER. DO NOT DISTRIBUTE.";
 }
 
 var-monitor {
     display: none;
 }
 
-var-monitor button {
+var-monitor .db-btn {
     position: fixed;
     right: 0;
     top: 0;
@@ -154,6 +150,11 @@ var-monitor button {
     background: #00000050;
     font-family: monospace;
     color: #ffffff;
+}
+
+var-monitor .db-btn:hover {
+    background: #ffffff;
+    color: #000000;
 }
 
 .debugmode var-monitor {

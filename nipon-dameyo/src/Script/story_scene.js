@@ -1,6 +1,4 @@
 function init() {
-    EngineInit();
-
     kita.classList.add("fade-opening");
     text = document.querySelector(".story-text");
     image = document.querySelector(".story-image");
@@ -40,7 +38,10 @@ function next_text() {
         text_index++;
         text_gen();
     } else {
-        location.href = "game.html";
+        kita.classList.remove("fade-opening");
+        setTimeout(() => {
+            location.href = "game.html";
+        }, 3000);
     }
 }
 
