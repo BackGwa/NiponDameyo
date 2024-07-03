@@ -385,3 +385,19 @@ function interrogate_toggle() {
         }
     }, 125);
 }
+
+function itr_search() {
+    let itr_select = false;
+    dm_item.forEach((j) => {
+        if (!itr_select) {
+            itr_select = j.classList.contains("z-up-i");
+            itr_item = j;
+        }
+    });
+
+    if (itr_select) {
+        PlayAudio(`Asset/Audio/SE/itr_check.mp3`, 0.7);
+    } else {
+        PlayAudio(`Asset/Audio/SE/itr_error.mp3`, 0.7);
+    }
+}
