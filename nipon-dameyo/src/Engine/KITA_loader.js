@@ -1,5 +1,5 @@
 
-const DEBUG = true;
+const DEBUG = false;
 
 try {
     document.addEventListener('DOMContentLoaded', () => {
