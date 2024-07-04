@@ -241,6 +241,8 @@ kita-layer {
     height: calc(100% - 2rem);
     margin: 1rem 2rem 1rem 2.25rem;
     color: #534845;
+    display: flex;
+    flex-direction: column;
 }
 
 .note-size p img {
@@ -605,12 +607,18 @@ kita-layer {
 
 .search-start span {
     right: -7.25rem;
+    transition: 0.25s cubic-bezier(.24,1.1,.23,.92);
     opacity: 1.0;
+    z-index: 1;
 }
 
 .itr-animation {
     animation: itr-frame 0.25s ease-in-out forwards;
     pointer-events: none;
+}
+
+.search-animation span {
+    transform: translate(-0.75rem, -1.75rem);
 }
 
 @keyframes itr-frame {
@@ -627,6 +635,28 @@ kita-layer {
     100% {
         bottom: 0;
         right: 0;
+    }
+}
+
+.search-animation {
+    animation: search-frame 0.25s ease-in-out forwards;
+    pointer-events: none;
+}
+
+@keyframes search-frame {
+    0% {
+        bottom: 0;
+        left: 0;
+    }
+
+    50% {
+        bottom: -25px;
+        left: -25px;
+    }
+
+    100% {
+        bottom: 0;
+        left: 0;
     }
 }
 
@@ -653,4 +683,48 @@ kita-layer {
     width: calc(100% - 2rem);
     height: 12rem;
     margin: 0 1rem;
+}
+
+.pages .header {
+    width: 100%;
+    margin: 0.5rem 0;
+    font-family: "Sam3KRFont";
+    color: #534845;
+    font-size: 1.75rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.pages .hr {
+    width: calc(100% - 1rem);
+    margin: 0rem 0.5rem 0.5rem 0.5rem;
+    border-top: 2px solid #534845;
+}
+
+.pages .list {
+    width: calc(100% - 2rem);
+    height: fit-content;
+    display: flex;
+    margin: 0.5rem 1rem;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.pages .list .item {
+    width: fit-content;
+    padding: 0.125rem 0.5rem;
+    margin-bottom: 0.5rem;
+    background: #534845;
+    color: #E3E6C0;
+    border-radius: 0.35rem;
+    font-size: 1.3rem;
+    pointer-events: all;
+}
+
+.pages .list .item::before {
+    content: "⦁";
+    margin-right: 0.75rem;
+    line-height: 0.3rem;
+    font-size: 1.5rem;
 }

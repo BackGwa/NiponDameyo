@@ -146,7 +146,7 @@ function dm_event() {
                     i.classList.add("z-up-i");
                 }
 
-                if (e.target.className == "paper-left" || e.target.className == "paper-right") {
+                if (e.target.className == "paper-left" || e.target.className == "paper-right" || e.target.className == "item") {
                     return;
                 }
     
@@ -169,7 +169,7 @@ function dm_event() {
             try {
                 write("Item Unselect", e.target);
 
-                if (e.target.className == "paper-left" || e.target.className == "paper-right") {
+                if (e.target.className == "paper-left" || e.target.className == "paper-right" || e.target.className == "item") {
                     return;
                 }
     
@@ -302,6 +302,25 @@ function click_stamp() {
     }
 }
 
+function page_change(target, addx) {
+    try {
+        PlayAudio(`Asset/Audio/SE/paper_left.mp3`, 0.4);
+
+        page = document.querySelector(`#${target}`);
+        pages = page.querySelectorAll(".pages");
+
+        pages.forEach((i, idx) => {
+            i.classList.add("disable");
+        });
+    
+        pages[addx - 1].classList.remove("disable");
+
+        page_chk(target, addx - 1, pages.length - 1);
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 function page_move(target, addx) {
     try {
         page = document.querySelector(`#${target}`);
@@ -394,6 +413,7 @@ function itr_search() {
             itr_item = j;
         }
     });
+    PlayAnimation(search, "search-animation", true);
 
     if (itr_select) {
         PlayAudio(`Asset/Audio/SE/itr_check.mp3`, 0.7);
