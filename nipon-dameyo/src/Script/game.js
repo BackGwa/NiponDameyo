@@ -11,6 +11,7 @@ function init() {
         tt = document.querySelector(".tooltip");
         itr = document.querySelector(".interrogate");
         search = document.querySelector(".search");
+        can_select = document.querySelectorAll(".can-select");
     
         setTimeout(() => {
             kita.classList.add("fade-opening");
@@ -130,6 +131,34 @@ function dm_event() {
         }
     });
 
+    can_select.forEach((i) => {
+        i.addEventListener("mousedown", (e) => {
+            try {
+                can_select.forEach((j) => {
+                    if (j != i) {
+                        j.classList.remove("z-up-i");
+                        j.parentElement.parentElement.parentElement.classList.remove("super-z");
+                    }
+                });
+            } catch (e) {
+                console.error(e);
+            }
+
+            if (interrogate && i.classList.contains("can-select")) {
+                if (i.classList.contains("z-up-i")) {
+                    i.classList.remove("z-up-i");
+                    i.parentElement.parentElement.parentElement.classList.remove("super-z");
+                    PlayAudio("Asset/Audio/SE/itr_unselect.mp3");
+                } else {
+                    i.parentElement.parentElement.parentElement.classList.add("super-z");
+                    i.classList.add("z-up-i");
+                    PlayAudio("Asset/Audio/SE/itr_select.mp3");
+                }
+            }
+
+        });
+    });
+
     dm_item.forEach((i) => {
         i.addEventListener("mousedown", (e) => {
             try {
@@ -137,16 +166,11 @@ function dm_event() {
     
                 dm_item.forEach((j) => {
                     j.classList.remove("z-up");
-                    j.classList.remove("z-up-i");
                 });
 
                 i.classList.add("z-up");
                 
-                if (interrogate) {
-                    i.classList.add("z-up-i");
-                }
-
-                if (e.target.className == "paper-left" || e.target.className == "paper-right" || e.target.className == "item") {
+                if (e.target.className == "paper-left" || e.target.className == "paper-right" || e.target.classList.contains("item")) {
                     return;
                 }
     
@@ -159,7 +183,10 @@ function dm_event() {
     
                 moving = true;
                 i.classList.add("z-up");
-                i.classList.add("scale-up");
+                
+                if (!interrogate) {
+                    i.classList.add("scale-up");
+                }
         } catch (e) {
             console.error(e);
         }
@@ -169,7 +196,7 @@ function dm_event() {
             try {
                 write("Item Unselect", e.target);
 
-                if (e.target.className == "paper-left" || e.target.className == "paper-right" || e.target.className == "item") {
+                if (e.target.className == "paper-left" || e.target.className == "paper-right" || e.target.classList.contains("item")) {
                     return;
                 }
     
@@ -187,7 +214,7 @@ function dm_event() {
 
         i.addEventListener("mousemove", (e) => {
             try {
-                if (moving && i.classList.contains("z-up")) {
+                if (moving && i.classList.contains("z-up") && !interrogate) {
                     const top = parseInt(i.style.top.substring(0, i.style.top.length - 2));
                     const left = parseInt(i.style.left.substring(0, i.style.left.length - 2));
                     write("Item Moving", e.target);
@@ -386,18 +413,24 @@ function new_chat(text) {
 
 function interrogate_toggle() {
     interrogate = !interrogate;
-    dm_item.forEach((j) => {
-        j.classList.remove("z-up-i");
+    dm_item.forEach((i) => {
+        i.classList.remove("super-z");
+    });
+    can_select.forEach((i) => {
+        i.classList.remove("z-up-i");
     });
     PlayAnimation(itr, "itr-animation", true);
+
     setTimeout(() => {
         if (interrogate) {
             itr.classList.add("itr-start");
+            kita.classList.add("itr-body");
             search.classList.add("search-start");
             PlayAudio(`Asset/Audio/SE/itr_open.mp3`, 0.7);
             document.querySelector(".itr-filter").classList.add("itr-filter-enable");
         } else {
             itr.classList.remove("itr-start");
+            kita.classList.remove("itr-body");
             search.classList.remove("search-start");
             PlayAudio(`Asset/Audio/SE/itr_close.mp3`, 0.7);
             document.querySelector(".itr-filter").classList.remove("itr-filter-enable");
@@ -407,10 +440,10 @@ function interrogate_toggle() {
 
 function itr_search() {
     let itr_select = false;
-    dm_item.forEach((j) => {
+    can_select.forEach((i) => {
         if (!itr_select) {
-            itr_select = j.classList.contains("z-up-i");
-            itr_item = j;
+            itr_select = i.classList.contains("z-up-i");
+            itr_item = i;
         }
     });
     PlayAnimation(search, "search-animation", true);

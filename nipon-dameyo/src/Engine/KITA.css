@@ -44,7 +44,6 @@ kita-layer {
     background: #000;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    pointer-events: all;
     top: 50%;
 }
 
@@ -137,7 +136,7 @@ kita-version {
 .debugmode kita-version::before {
     color: #ffff00;
     font-size: 1.2rem;
-    content: "KITA ENGINE v703 - Produced by PLAYLABS (KANG CHANYOUNG) \A THIS IS A DEVELOPMENT VERSION. THE FINAL VERSION MAY DIFFER. DO NOT DISTRIBUTE.";
+    content: "KITA ENGINE v705 - Produced by PLAYLABS (KANG CHANYOUNG) \A THIS IS A DEVELOPMENT VERSION. THE FINAL VERSION MAY DIFFER. DO NOT DISTRIBUTE.";
 }
 
 var-monitor {

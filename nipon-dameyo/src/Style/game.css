@@ -196,10 +196,8 @@ kita-layer {
 }
 
 .z-up-i {
-    z-index: 11 !important;
-    border: solid 12px transparent;
-    box-shadow: 0 0 0 4px #ffffff;
-    scale: 110%;
+    z-index: 11;
+    mix-blend-mode: difference;
 }
 
 .cost-size {
@@ -234,6 +232,14 @@ kita-layer {
     line-height: 1.4rem;
     color: #363636;
     pointer-events: none;
+}
+
+.itr-body .can-select {
+    outline: 2px solid #ffffffa0;
+}
+
+.itr-body .can-select:hover {
+    outline: 4px solid #ffffff;
 }
 
 .note-size p {
@@ -290,13 +296,13 @@ kita-layer {
 
 
 .scale-up {
-    transform: rotate(-1deg) scale(101%) !important;
+    transform: rotate(-1deg) scale(105%) !important;
     filter: drop-shadow(12px 12px 1px #00000025) drop-shadow(0px 0px 4px #0000001a);
     -webkit-filter: drop-shadow(12px 12px 1px #00000025) drop-shadow(0px 0px 4px #0000001a);
 }
 
 .scale-up:not(.cost-size) {
-    transform: rotate(0deg) scale(101%) !important;
+    transform: rotate(0deg) scale(105%) !important;
 }
 
 .date-counter {
@@ -463,7 +469,7 @@ kita-layer {
 
 .disable {
     opacity: 0.0;
-    pointer-events: none;
+    pointer-events: none !important;
 }
 
 .passport-small {
@@ -689,17 +695,22 @@ kita-layer {
     width: 100%;
     margin: 0.5rem 0;
     font-family: "Sam3KRFont";
-    color: #534845;
+    color: #939578;
     font-size: 1.75rem;
     text-align: center;
     display: flex;
     justify-content: center;
 }
 
+.big {
+    font-size: 3rem !important;
+    margin: 1rem 0 !important;
+}
+
 .pages .hr {
     width: calc(100% - 1rem);
     margin: 0rem 0.5rem 0.5rem 0.5rem;
-    border-top: 2px solid #534845;
+    border-top: 2px dashed #939578;
 }
 
 .pages .list {
@@ -711,20 +722,43 @@ kita-layer {
     justify-content: start;
 }
 
+.pages .list .item::before {
+    content: "⦁";
+    margin-right: 0.75rem;
+    line-height: 0.3rem;
+    font-size: 1.5rem;
+}
+
 .pages .list .item {
     width: fit-content;
     padding: 0.125rem 0.5rem;
     margin-bottom: 0.5rem;
-    background: #534845;
+    background: #554846;
     color: #E3E6C0;
     border-radius: 0.35rem;
     font-size: 1.3rem;
     pointer-events: all;
 }
 
-.pages .list .item::before {
-    content: "⦁";
-    margin-right: 0.75rem;
-    line-height: 0.3rem;
-    font-size: 1.5rem;
+.disable .list .item {
+    pointer-events: none !important;
+}
+
+.inner-image {
+    width: calc(100% - 1rem);
+    height: calc(100% - 3rem);
+    margin: 0rem 0.5rem;
+}
+
+.inner-small-image {
+    position: absolute;
+    width: calc(100% - 1rem);
+    height: 6.5rem;
+    bottom: 2rem;
+    margin: 0rem 0.5rem;
+}
+
+.super-z {
+    z-index: 11;
+    outline: 5px solid white;
 }
