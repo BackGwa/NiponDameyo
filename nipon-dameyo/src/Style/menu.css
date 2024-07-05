@@ -45,7 +45,7 @@ kita-layer {
 }
 
 .infomation:hover::after {
-    content: "제작진 : 강찬영, 한재경, 김국호, 상훈";
+    content: "제작진 : 강찬영, 한재경, 강상훈, 김국호";
 }
 
 .game-version::after {

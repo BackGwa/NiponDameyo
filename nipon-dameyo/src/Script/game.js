@@ -3,6 +3,7 @@ let isopen = false;
 let pps = false;
 let submit = false;
 let interrogate = false;
+let search_ing = false;
 
 function init() {
     try {
@@ -78,7 +79,7 @@ function dm_event() {
     window.addEventListener("mousemove", (e) => {
         try {
             let caliview;
-            if (moving && !submit) {
+            if (moving && !submit && !interrogate) {
                 write("pps", pps);
                 write("submit", submit);
                 parent = e.target.offsetParent;
@@ -174,8 +175,8 @@ function dm_event() {
                     return;
                 }
     
-                if (e.target.className.includes("passport-size") ||
-                    e.target.className.includes("note-size")) {
+                if (e.target.classList.contains("passport-size") ||
+                    e.target.classList.contains("note-size")) {
                     PlayAudio(`Asset/Audio/SE/passport_up.mp3`, 1);
                 } else {
                     PlayAudio(`Asset/Audio/SE/paper_pick_up.mp3`, 0.2);
@@ -200,8 +201,8 @@ function dm_event() {
                     return;
                 }
     
-                if (e.target.className.includes("passport-size") ||
-                    e.target.className.includes("note-size")
+                if (e.target.classList.contains("passport-size") ||
+                    e.target.classList.contains("note-size")
                 ) {
                     PlayAudio(`Asset/Audio/SE/passport_down.mp3`, 0.5);
                 } else {
@@ -315,14 +316,17 @@ function click_stamp() {
         st_pass.classList.add("stamp-down");
         st_shadow.classList.add("stamp-shadow-down");
         st_btn.classList.add("stamp-btn-down");
-        PlayAudio(`Asset/Audio/SE/stamp_down.mp3`, 0.6);
-        result = stamp_collision();
+        PlayAudio(`Asset/Audio/SE/stamp_down.mp3`, 0.8);
+
+        setTimeout(() => {
+            result = stamp_collision();
+        }, 100);
 
         setTimeout(() => {
             st_pass.classList.remove("stamp-down");
             st_shadow.classList.remove("stamp-shadow-down");
             st_btn.classList.remove("stamp-btn-down");
-            PlayAudio(`Asset/Audio/SE/stamp_up.mp3`, 0.4);
+            PlayAudio(`Asset/Audio/SE/stamp_up.mp3`, 0.6);
         }, 1250);
     } catch (e) {
         console.error(e);
@@ -331,7 +335,7 @@ function click_stamp() {
 
 function page_change(target, addx) {
     try {
-        PlayAudio(`Asset/Audio/SE/paper_left.mp3`, 0.4);
+        PlayAudio(`Asset/Audio/SE/paper_left.mp3`, 1);
 
         page = document.querySelector(`#${target}`);
         pages = page.querySelectorAll(".pages");
@@ -363,9 +367,9 @@ function page_move(target, addx) {
         });
 
         if (addx == 1) {
-            PlayAudio(`Asset/Audio/SE/paper_right.mp3`, 0.4);
+            PlayAudio(`Asset/Audio/SE/paper_right.mp3`, 1);
         } else {
-            PlayAudio(`Asset/Audio/SE/paper_left.mp3`, 0.4);
+            PlayAudio(`Asset/Audio/SE/paper_left.mp3`, 1);
         }
 
         if (addx == 1 && pages.length - 1 == curidx) {
@@ -439,7 +443,13 @@ function interrogate_toggle() {
 }
 
 function itr_search() {
+    if (search_ing) {
+        return;
+    }
+
     let itr_select = false;
+    search_ing = true;
+
     can_select.forEach((i) => {
         if (!itr_select) {
             itr_select = i.classList.contains("z-up-i");
@@ -449,8 +459,25 @@ function itr_search() {
     PlayAnimation(search, "search-animation", true);
 
     if (itr_select) {
-        PlayAudio(`Asset/Audio/SE/itr_check.mp3`, 0.7);
+        text_tooltip(itr_item, "불일치 발견");
+        PlayAudio(`Asset/Audio/SE/itr_check.mp3`, 1);
     } else {
-        PlayAudio(`Asset/Audio/SE/itr_error.mp3`, 0.7);
+        PlayAudio(`Asset/Audio/SE/itr_error.mp3`, 1);
     }
+
+    setTimeout(() => {
+        search_ing = false;
+    }, 1500);
+}
+
+function text_tooltip(item, text) {
+    ttooltip = document.querySelector(".text-tooltip");
+    hint_pos = item.offsetParent.offsetParent.getBoundingClientRect();
+    console.log(item.offsetParent.offsetParent, hint_pos);
+    ttooltip.style.left = `${(hint_pos.x - (hint_pos.width / 4)) + 16}px`;
+    ttooltip.style.top = `${(hint_pos.y - (hint_pos.height / 1.5))}px`;
+
+    ttooltip.innerText = text;
+
+    PlayAnimation(ttooltip, "ttooltip-display", true)
 }

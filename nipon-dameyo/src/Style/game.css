@@ -188,16 +188,12 @@ kita-layer {
     -webkit-filter: drop-shadow(6px 6px 0 #00000040);
     opacity: 0.0;
     transition: 0.1s ease-in-out;
+    image-rendering: optimizeSpeed;
 }
 
 .z-up {
     z-index: 2;
     transition: none;
-}
-
-.z-up-i {
-    z-index: 11;
-    mix-blend-mode: difference;
 }
 
 .cost-size {
@@ -388,6 +384,7 @@ kita-layer {
     top: 15%;
     transform: translateY(-50%);
     transition: 0.15s cubic-bezier(.07,1.16,.09,1.06);
+    transition-delay: 0.03s;
     pointer-events: none;
     z-index: 8;
 }
@@ -397,6 +394,7 @@ kita-layer {
     width: 95px;
     right: 210.5px;
     top: 33%;
+    transition-delay: 0.03s;
     transform: translateY(-50%);
     transition: 0.15s cubic-bezier(.07,1.16,.09,1.06);
     pointer-events: none;
@@ -483,7 +481,7 @@ kita-layer {
     pointer-events: none;
     filter: drop-shadow(2px 8px 0 #ffffff10);
     display: none;
-    z-index: 5;
+    z-index: 10;
 }
 
 .mpshow {
@@ -493,6 +491,7 @@ kita-layer {
 .mpani {
     display: block;
     animation: 0.4s mpani-drop forwards;
+    z-index: 7;
 }
 
 @keyframes mpani-drop {
@@ -607,7 +606,7 @@ kita-layer {
 }
 
 .itr-start span {
-    left: -6.75rem;
+    left: -10.5rem;
     opacity: 1.0;
 }
 
@@ -631,16 +630,19 @@ kita-layer {
     0% {
         bottom: 0;
         right: 0;
+        pointer-events: none;
     }
 
     50% {
         bottom: -25px;
         right: -25px;
+        pointer-events: none;
     }
 
     100% {
         bottom: 0;
         right: 0;
+        pointer-events: none;
     }
 }
 
@@ -653,16 +655,19 @@ kita-layer {
     0% {
         bottom: 0;
         left: 0;
+        pointer-events: none;
     }
 
     50% {
         bottom: -25px;
         left: -25px;
+        pointer-events: none;
     }
 
     100% {
         bottom: 0;
         left: 0;
+        pointer-events: none;
     }
 }
 
@@ -713,11 +718,20 @@ kita-layer {
     border-top: 2px dashed #939578;
 }
 
-.pages .list {
+
+.pages .list{
     width: calc(100% - 2rem);
+    margin: 0.5rem 1rem;
+}
+
+.pages .list:has(.can-select) {
+    width: calc(100% - 1rem) !important;
+    margin: 0.5rem 0.5rem !important;
+}
+
+.pages .list {
     height: fit-content;
     display: flex;
-    margin: 0.5rem 1rem;
     flex-direction: column;
     justify-content: start;
 }
@@ -733,15 +747,44 @@ kita-layer {
     width: fit-content;
     padding: 0.125rem 0.5rem;
     margin-bottom: 0.5rem;
-    background: #554846;
-    color: #E3E6C0;
     border-radius: 0.35rem;
     font-size: 1.3rem;
     pointer-events: all;
 }
 
+
 .disable .list .item {
     pointer-events: none !important;
+}
+
+.pages .list .item {
+    background: #554846;
+    color: #E3E6C0;
+}
+
+.pages .list .can-select {
+    background: transparent !important;
+    color: #554846;
+    font-size: 1.15rem;
+    margin-bottom: 0.2rem;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.itr-body .pages .list .can-select {
+    pointer-events: all;
+}
+
+.itr-body .pages .disable .list .can-select {
+    pointer-events: none !important;
+}
+
+.pages .list .can-select::before {
+    content: "▌ ";
+    margin-right: -0.4rem;
+    line-height: 0.3rem;
+    font-size: 1.3rem;
+    color: #babd9b;
 }
 
 .inner-image {
@@ -761,4 +804,85 @@ kita-layer {
 .super-z {
     z-index: 11;
     outline: 5px solid white;
+}
+
+.z-up-i {
+    z-index: 11 !important;
+    outline: 4px solid #ffffff !important;
+    isolation: isolate !important;
+    mix-blend-mode: difference !important;
+    color: #babd9b !important;
+}
+
+.text-tooltip {
+    position: absolute;
+    color: #ffffff;
+    z-index: 11;
+    font-size: 1.4rem;
+    font-family: 'PFStardust';
+    text-align: left;
+    opacity: 0.0;
+    line-height: 1.4rem;
+}
+
+.ttooltip-display {
+    animation: ttooltip-animation 1.75s forwards;
+}
+
+@keyframes ttooltip-animation {
+    0% {
+        opacity: 0.0;
+    }
+
+    60% {
+        opacity: 0.0;
+    }
+
+    61% {
+        opacity: 1.0;
+    }
+
+    65% {
+        opacity: 1.0;
+    }
+
+    66% {
+        opacity: 0.0;
+    }
+
+    70% {
+        opacity: 0.0;
+    }
+
+    71% {
+        opacity: 1.0;
+    }
+
+    75% {
+        opacity: 1.0;
+    }
+
+    76% {
+        opacity: 0.0;
+    }
+
+    80% {
+        opacity: 0.0;
+    }
+
+    81% {
+        opacity: 1.0;
+    }
+
+    100% {
+        opacity: 1.0;
+    }
+}
+
+.img-preloader {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0.0;
 }
