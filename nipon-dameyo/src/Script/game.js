@@ -12,6 +12,7 @@ function init() {
         tt = document.querySelector(".tooltip");
         itr = document.querySelector(".interrogate");
         search = document.querySelector(".search");
+        next = document.querySelector(".next");
         can_select = document.querySelectorAll(".can-select");
     
         setTimeout(() => {
@@ -480,4 +481,10 @@ function text_tooltip(item, text) {
     ttooltip.innerText = text;
 
     PlayAnimation(ttooltip, "ttooltip-display", true)
+}
+
+function call_next() {
+    PlayAudio("Asset/Audio/SE/button_click.mp3", 0.5);
+    PlayAnimation(next, "search-animation", true);
+    PlayAudio("Asset/Audio/SE/speech.mp3", 0.5);
 }

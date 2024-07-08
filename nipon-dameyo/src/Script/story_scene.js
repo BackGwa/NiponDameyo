@@ -23,13 +23,13 @@ function text_gen() {
             } else {
                 text.innerHTML += script[text_index].text[i];
             }
-            vse = randint(1, 3);
-            PlayAudio(`Asset/Audio/SE/speech${vse}.mp3`, 0.6);
-        }, i * 55);
+            vse = randint(0, 3);
+            PlayAudio(`Asset/Audio/SE/typing${vse}.mp3`, 0.6);
+        }, i * 80);
     }
     setTimeout(() => {
         btn.disabled = false;
-    }, len * 55);
+    }, len * 85);
 }
 
 function next_text() {

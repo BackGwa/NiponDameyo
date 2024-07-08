@@ -96,7 +96,7 @@ kita-layer {
     mix-blend-mode: screen;
     pointer-events: none;
     z-index: 50;
-    opacity: 0.4;
+    opacity: 0.25;
     filter: blur(48px);
     -webkit-filter: blur(48px);
 }
@@ -228,10 +228,11 @@ kita-layer {
     line-height: 1.4rem;
     color: #363636;
     pointer-events: none;
+    white-space: nowrap;
 }
 
 .itr-body .can-select {
-    outline: 2px solid #ffffffa0;
+    outline: 2px solid #ffffffff;
 }
 
 .itr-body .can-select:hover {
@@ -562,6 +563,31 @@ kita-layer {
     opacity: 0.0;
     pointer-events: none;
     transition: 0.125s ease-in-out;
+}
+
+.next {
+    position: absolute;
+    width: calc(1200px / 14);
+    height: calc(852px / 14);
+    outline: none;
+    border: none;
+    bottom: 0;
+    left: 0;
+    background-color: transparent;
+    background-image: url(../Asset/Texture/next.png);
+    background-position: center;
+    background-size: cover; 
+    z-index: 7;
+    opacity: 1.0;
+    pointer-events: all;
+    transition: 0.125s ease-in-out;
+}
+
+.itr-body .next {
+    opacity: 0.0;
+    pointer-events: none;
+    bottom: -25px;
+    left: -25px;
 }
 
 .search-start {
