@@ -1,12 +1,17 @@
+button {
+    cursor: url("../Asset/Texture/CursorHand.png"), auto !important
+}
+
 .btn-ui button {
-    font-family: "Sam3KRFont";
+    font-family: "PFStardust";
     letter-spacing: -8px;
-    font-size: 3rem;
+    font-size: 2.9rem;
     background: transparent;
-    color: #43120e;
+    color: #535753;
     border: none;
-    border-bottom: 1px dashed #586058;
+    border-bottom: 1px dashed #535753;
     outline: none !important;
+    line-height: 3rem;
 }
 
 .btn-ui button:hover {

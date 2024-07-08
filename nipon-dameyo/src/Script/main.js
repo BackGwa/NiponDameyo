@@ -20,6 +20,8 @@ function init() {
 function play() {
     kita.classList.add("exit");
     kita.classList.add("block-event");
+    music = document.querySelector("#music");
+    fadeout(music);
     setTimeout(() => {
         location.href = "scene1.html";
     }, 3500);

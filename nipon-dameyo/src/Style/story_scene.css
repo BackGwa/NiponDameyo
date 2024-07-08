@@ -21,15 +21,16 @@ kita-layer {
 
 .story-text {
     position: absolute;
-    color: #ca2e2c;
+    color: #ffffff;
     font-size: 3rem;
     height: 6rem;
     left: 50%;
     bottom: 18rem;
     transform: translateX(-50%);
-    font-family: 'Sam3KRFont';
+    font-family: 'PFStardust';
     text-align: center;
     white-space: nowrap;
+    line-height: 3rem;
 }
 
 .story-image {
@@ -57,10 +58,11 @@ kita-layer {
 }
 
 button:disabled {
-    opacity: 0.75;
+    opacity: 0.0;
+    pointer-events: none;
 }
 
 button:disabled:hover {
     background: transparent !important;
-    color: #43120e !important;
+    color: transparent !important;
 }

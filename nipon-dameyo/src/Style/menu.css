@@ -38,6 +38,7 @@ kita-layer {
     white-space: nowrap;
     font-size: 1.2rem;
     opacity: 0.0;
+    text-align: center;
 }
 
 .infomation::after {
@@ -45,7 +46,7 @@ kita-layer {
 }
 
 .infomation:hover::after {
-    content: "제작진 : 강찬영, 한재경, 강상훈, 김국호";
+    content: "게임 제작진 : 강찬영, 한재경, 강상훈, 김국호";
 }
 
 .game-version::after {

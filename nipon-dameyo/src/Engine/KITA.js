@@ -40,6 +40,7 @@ function PlayAnimation(target, className, reset = false) {
 
 function EngineInit() {
     kita = document.querySelector('kita-layer');
+    
     logger = document.querySelector('kita-logger');
     var_monitor = document.querySelector("var-monitor");
     usage = document.querySelector("kita-version");
@@ -80,33 +81,37 @@ function EngineInit() {
             ConsoleError.apply(console, arguments);
         };
 
-        window.api.onUsageData((event, data) => {
-            usage.innerHTML = "<br><br>";
-
-            usage.innerHTML += `CPU Usage`;
-            if (data.cpuUsage >= 90) {
-                usage.innerHTML += `<pre class="error">${data.cpuUsage.toFixed(2)}%</pre><br>`;
-            } else if (data.cpuUsage >= 70) {
-                usage.innerHTML += `<pre class="warning">${data.cpuUsage.toFixed(2)}%</pre><br>`;
-            } else {
-                usage.innerHTML += `<pre>${data.cpuUsage.toFixed(2)}%</pre><br>`;
-            }
-
-            usage.innerHTML += `System Memory Usage`;
-            if (data.usedMemGiB >= data.totalMemGiB - 2) {
-                usage.innerHTML += `<pre class="error">${data.memUsage.toFixed(2)}% (${data.usedMemGiB.toFixed(2)}GiB/${data.totalMemGiB.toFixed(2)}GiB)</pre><br>`;
-            } else if (data.usedMemGiB >= data.totalMemGiB - 4) {
-                usage.innerHTML += `<pre class="warning">${data.memUsage.toFixed(2)}% (${data.usedMemGiB.toFixed(2)}GiB/${data.totalMemGiB.toFixed(2)}GiB)</pre><br>`;
-            } else {
-                usage.innerHTML += `<pre>${data.memUsage.toFixed(2)}% (${data.usedMemGiB.toFixed(2)}GiB/${data.totalMemGiB.toFixed(2)}GiB)</pre><br>`;
-            }
-
-            usage.innerHTML += `Resident Set Size`;
-            usage.innerHTML += `<pre>${data.rss}MiB</pre><br>`;
-
-            usage.innerHTML += `Heap`;
-            usage.innerHTML += `<pre>${data.heapUsed}MiB / ${data.heapTotal}MiB</pre><br>`;
-        });
+        try {
+            window.api.onUsageData((event, data) => {
+                usage.innerHTML = "<br><br>";
+    
+                usage.innerHTML += `CPU Usage`;
+                if (data.cpuUsage >= 90) {
+                    usage.innerHTML += `<pre class="error">${data.cpuUsage.toFixed(2)}%</pre><br>`;
+                } else if (data.cpuUsage >= 70) {
+                    usage.innerHTML += `<pre class="warning">${data.cpuUsage.toFixed(2)}%</pre><br>`;
+                } else {
+                    usage.innerHTML += `<pre>${data.cpuUsage.toFixed(2)}%</pre><br>`;
+                }
+    
+                usage.innerHTML += `System Memory Usage`;
+                if (data.usedMemGiB >= data.totalMemGiB - 2) {
+                    usage.innerHTML += `<pre class="error">${data.memUsage.toFixed(2)}% (${data.usedMemGiB.toFixed(2)}GiB/${data.totalMemGiB.toFixed(2)}GiB)</pre><br>`;
+                } else if (data.usedMemGiB >= data.totalMemGiB - 4) {
+                    usage.innerHTML += `<pre class="warning">${data.memUsage.toFixed(2)}% (${data.usedMemGiB.toFixed(2)}GiB/${data.totalMemGiB.toFixed(2)}GiB)</pre><br>`;
+                } else {
+                    usage.innerHTML += `<pre>${data.memUsage.toFixed(2)}% (${data.usedMemGiB.toFixed(2)}GiB/${data.totalMemGiB.toFixed(2)}GiB)</pre><br>`;
+                }
+    
+                usage.innerHTML += `Resident Set Size`;
+                usage.innerHTML += `<pre>${data.rss}MiB</pre><br>`;
+    
+                usage.innerHTML += `Heap`;
+                usage.innerHTML += `<pre>${data.heapUsed}MiB / ${data.heapTotal}MiB</pre><br>`;
+            });
+        } catch (e) {
+            write("API CONNECT ERROR", e, false, true);
+        }
 
         write("KITA Engine initialization", "Start", false, false, true);
 
@@ -290,4 +295,15 @@ function monitor() {
     } catch (e) {
         console.error(e);
     }
+}
+
+function fadeout(target, scale = 0.00125, interval = 5) {
+    setInterval(() => {
+        nv = target.volume;
+        if (nv > 0.0) {
+            write("Fadeout", nv);
+            nv -= scale;
+            target.volume = nv;
+        }
+    }, interval);
 }

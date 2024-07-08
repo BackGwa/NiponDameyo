@@ -25,9 +25,10 @@ function init() {
         }, 1500);
     
         setTimeout(() => {
-            PlayAudio(`Asset/Audio/SE/stamp_close.mp3`, 0.4);
-            document.querySelector(".date-counter").classList.remove("date-view");
-        }, 4000);
+            PlayAudio(`Asset/Audio/SE/booth_open.mp3`, 0.4);
+            document.querySelector(".date-counter").classList.remove("date-down");
+            document.querySelector(".date-counter").classList.add("date-down");
+        }, 4250);
     
     
         setTimeout(() => {

@@ -15,13 +15,13 @@
 }
 
 .top-layer {
-    height: 100%;
-    transition: 1s ease-in;
+    height: 19ex;
+    transition: 0.5s cubic-bezier(.13,.79,.09,.98);
+    transition-delay: 4.125s;
     opacity: 0.0;
 }
 
 .fade-opening .top-layer {
-    height: 20%;
     opacity: 1.0;
 }
 
@@ -30,19 +30,19 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    transition: 0.75s ease-in;
-    transition-delay: 4s;
+    transition: 0.75s cubic-bezier(.77,.89,0,.99);
+    transition-delay: 4.125s;
     opacity: 0.0;
 }
 
 .fade-opening .bottom-layer {
-    height: 80%;
+    height: calc(100% - 19ex);
     opacity: 1.0;
 }
 
 .outside {
     position: absolute;
-    width: 35%;
+    width: 30%;
     left: 50%;
     top: 35%;
     transform: translate(-50%, -50%);
@@ -187,8 +187,7 @@ kita-layer {
     filter: drop-shadow(6px 6px 0 #00000040);
     -webkit-filter: drop-shadow(6px 6px 0 #00000040);
     opacity: 0.0;
-    transition: 0.1s ease-in-out;
-    image-rendering: optimizeSpeed;
+    transition: 0.05s ease-in-out;
 }
 
 .z-up {
@@ -304,15 +303,15 @@ kita-layer {
 
 .date-counter {
     position: absolute;
-    bottom: 25%;
+    bottom: 28%;
     color: #ca2e2c;
     left: 50%;
-    transform: translate(-50%, -50%) scale(105%) rotate(1deg);
+    transform: translate(-50%, -50%) scale(105%) rotate(2deg);
     font-size: 3.5rem;
     font-family: 'PFStardust';
     font-weight: bold;
     opacity: 0.0;
-    transition: 0.5s steps(7);
+    transition: 0.5s cubic-bezier(.77,.89,0,.99);
     text-align: center;
     line-height: 4rem;
     padding: 3rem;
@@ -321,8 +320,12 @@ kita-layer {
 }
 
 .date-view {
-    transform: translate(-50%, -50%) scale(100%) rotate(-1deg);
+    transform: translate(-50%, -50%) scale(100%) rotate(0deg);
     opacity: 1.0;
+}
+
+.date-down {
+    transform: translate(-50%, 600%) scale(95%) rotate(0deg);
 }
 
 .stamp {
@@ -366,6 +369,7 @@ kita-layer {
     transform: translateY(-50%);
     left: 0;
     z-index: 8;
+    cursor: url("../Asset/Texture/CursorHand.png"), auto !important;
 }
 
 .stamp-pass {
@@ -376,6 +380,7 @@ kita-layer {
     top: 60%;
     transform: translateY(-50%);
     transition: 0.15s cubic-bezier(.07,1.16,.09,1.06);
+    cursor: url("../Asset/Texture/CursorHand.png"), auto !important
 }
 
 .stamp-button {
@@ -435,6 +440,7 @@ kita-layer {
     background-position: center;
     background-repeat: no-repeat;
     bottom: 0;
+    cursor: url("../Asset/Texture/CursorHand.png"), auto !important;
 }
 
 .paper-left {
@@ -545,6 +551,7 @@ kita-layer {
     background-position: center;
     background-size: cover; 
     z-index: 12;
+    cursor: url("../Asset/Texture/CursorHand.png"), auto !important;
 }
 
 .search {
@@ -563,6 +570,7 @@ kita-layer {
     opacity: 0.0;
     pointer-events: none;
     transition: 0.125s ease-in-out;
+    cursor: url("../Asset/Texture/CursorHand.png"), auto !important;
 }
 
 .next {
@@ -581,6 +589,7 @@ kita-layer {
     opacity: 1.0;
     pointer-events: all;
     transition: 0.125s ease-in-out;
+    cursor: url("../Asset/Texture/CursorHand.png"), auto !important;
 }
 
 .itr-body .next {
@@ -799,6 +808,7 @@ kita-layer {
 
 .itr-body .pages .list .can-select {
     pointer-events: all;
+    cursor: url("../Asset/Texture/CursorHand.png"), auto !important;
 }
 
 .itr-body .pages .disable .list .can-select {

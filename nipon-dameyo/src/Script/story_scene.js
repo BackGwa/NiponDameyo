@@ -5,6 +5,8 @@ function init() {
     btn = document.querySelector(".story-btn");
     text_index = 0;
 
+    btn.disabled = true;
+
     setTimeout(() => {
         text_gen();
     }, 1000);
@@ -25,11 +27,11 @@ function text_gen() {
             }
             vse = randint(0, 3);
             PlayAudio(`Asset/Audio/SE/typing${vse}.mp3`, 0.6);
-        }, i * 80);
+        }, i * 60);
     }
     setTimeout(() => {
         btn.disabled = false;
-    }, len * 85);
+    }, len * 70);
 }
 
 function next_text() {
@@ -39,6 +41,8 @@ function next_text() {
         text_gen();
     } else {
         kita.classList.remove("fade-opening");
+        music = document.querySelector("#music");
+        fadeout(music);
         setTimeout(() => {
             location.href = "game.html";
         }, 3000);
