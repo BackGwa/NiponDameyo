@@ -34,3 +34,19 @@ function exit() {
         window.electronAPI.quitApp();
     }, 3500);
 }
+
+function credit() {
+    creditf = document.querySelector("#credit");
+    PlayAudio("Asset/Audio/SE/button_click.mp3");
+    fadeout(music);
+    creditf.classList.add("credit-show");
+    setTimeout(() => {
+        creditf.play();
+        console.log(creditf.duration);
+    }, 3500);
+
+    setTimeout(() => {
+        creditf.classList.remove("credit-show");
+        music.volume = 0.4;
+    }, (creditf.duration * 1000) + 5000);
+}

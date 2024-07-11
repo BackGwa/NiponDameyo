@@ -46,6 +46,11 @@ function init() {
             document.querySelector("#paper3").classList.add("paper-print");
         }, 5750);
 
+        setTimeout(() => {
+            PlayAudio(`Asset/Audio/SE/paper_landing.mp3`, 0.6);
+            document.querySelector("#key").classList.add("paper-print");
+        }, 6000);
+
         dm_item = document.querySelectorAll(".document-item");
         dm_event();   
     } catch (e) {
@@ -54,6 +59,18 @@ function init() {
 }
 
 function dm_event() {
+    window.addEventListener("keydown", (e) => {
+        if (e.keyCode == 9) interrogate_toggle();
+        if (e.keyCode == 16) call_next();
+        if (e.keyCode == 32) {
+            if (interrogate) {
+                itr_search() 
+            } else {
+                stamp_filp();
+            }
+        }
+    });
+
     window.addEventListener("mouseup", (e) => {
         try {
             write("window mouseup", e.target);
@@ -178,8 +195,11 @@ function dm_event() {
                 }
     
                 if (e.target.classList.contains("passport-size") ||
-                    e.target.classList.contains("note-size")) {
+                    e.target.classList.contains("note-size") && !e.target.classList.contains("cost-size")) {
                     PlayAudio(`Asset/Audio/SE/passport_up.mp3`, 1);
+                } else if (e.target.classList.contains("key-size") && !e.target.classList.contains("cost-size")) {
+                    rse = randint(0, 2);
+                    PlayAudio(`Asset/Audio/SE/metalstart${rse}.mp3`, 0.2);
                 } else {
                     PlayAudio(`Asset/Audio/SE/paper_pick_up.mp3`, 0.2);
                 }
@@ -204,9 +224,12 @@ function dm_event() {
                 }
     
                 if (e.target.classList.contains("passport-size") ||
-                    e.target.classList.contains("note-size")
+                    e.target.classList.contains("note-size") && !e.target.classList.contains("cost-size")
                 ) {
                     PlayAudio(`Asset/Audio/SE/passport_down.mp3`, 0.5);
+                } else if (e.target.classList.contains("key-size") && !e.target.classList.contains("cost-size")) {
+                    rse = randint(0, 2);
+                    PlayAudio(`Asset/Audio/SE/metalstop${rse}.mp3`, 0.2);
                 } else {
                     PlayAudio(`Asset/Audio/SE/paper_pick_down.mp3`, 0.2);
                 }
@@ -223,7 +246,7 @@ function dm_event() {
                     write("Item Moving", e.target);
     
                     write("Blocking Check", { "x" : i.style.left, "y" : i.style.top });
-                    if (left < -150 || left > 1100) {
+                    if (left < -150 || left > 1100 && !i.classList.contains("key-size")) {
                         write("left-right blocking", i.style.left, true);
                         if (left < - 150) {
                             i.style.left = `-150px`;
@@ -234,7 +257,7 @@ function dm_event() {
                         i.style.left = `${left + e.movementX}px`;
                     }
                     
-                    if (top < -200 || top > 600) {
+                    if (top < -200 || top > 600&& !i.classList.contains("key-size")) {
                         write("top-bottom blocking", i.style.top, true);
                         if (top < -200) {
                             i.style.top = `-200px`;

@@ -297,13 +297,15 @@ function monitor() {
     }
 }
 
-function fadeout(target, scale = 0.00125, interval = 5) {
-    setInterval(() => {
+function fadeout(target, scale = 0.005, interval = 15) {
+    foi = setInterval(() => {
         nv = target.volume;
-        if (nv > 0.0) {
+        if (nv >= 0.005) { 
             write("Fadeout", nv);
             nv -= scale;
             target.volume = nv;
+        } else {
+            clearInterval(foi);
         }
     }, interval);
 }

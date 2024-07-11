@@ -180,14 +180,19 @@ kita-layer {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    border-top: 1px solid #00000020;
-    border-left: 1px solid #00000020;
-    border-bottom: 3px solid #00000040;
-    border-right: 3px solid #00000040;
     filter: drop-shadow(6px 6px 0 #00000040);
     -webkit-filter: drop-shadow(6px 6px 0 #00000040);
     opacity: 0.0;
     transition: 0.05s ease-in-out;
+}
+
+.cose-size,
+.passport-size,
+.note-size {
+    border-top: 1px solid #00000020;
+    border-left: 1px solid #00000020;
+    border-bottom: 3px solid #00000040;
+    border-right: 3px solid #00000040;
 }
 
 .z-up {
@@ -213,6 +218,12 @@ kita-layer {
     background-image: url(../Asset/Texture/note.png);
     width: 21rem;
     height: 27rem;
+}
+
+.key-size {
+    background-image: url(../Asset/Texture/key.png);
+    width: calc(1114px / 7);
+    height: calc(518px / 7);
 }
 
 .document-item p {

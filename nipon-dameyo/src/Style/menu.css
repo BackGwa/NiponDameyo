@@ -47,6 +47,7 @@ kita-layer {
 
 .infomation:hover::after {
     content: "게임 제작진 : 강찬영, 한재경, 강상훈, 김국호";
+    cursor: url("../Asset/Texture/CursorHand.png"), auto !important
 }
 
 .game-version::after {
@@ -290,3 +291,19 @@ kita-layer {
 .block-event .btn-ui {
     pointer-events: none !important;
 } 
+
+#credit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.0;
+    pointer-events: none;
+    transition: 3s ease-in-out;
+}
+
+.credit-show {
+    opacity: 1.0 !important;
+    pointer-events: all !important; 
+    transition: 0s;
+}
