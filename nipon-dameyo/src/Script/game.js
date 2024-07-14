@@ -62,13 +62,7 @@ function dm_event() {
     window.addEventListener("keydown", (e) => {
         if (e.keyCode == 9) interrogate_toggle();
         if (e.keyCode == 16) call_next();
-        if (e.keyCode == 32) {
-            if (interrogate) {
-                itr_search() 
-            } else {
-                stamp_filp();
-            }
-        }
+        if (e.keyCode == 32) stamp_filp();
     });
 
     window.addEventListener("mouseup", (e) => {
