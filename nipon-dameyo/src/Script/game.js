@@ -4,16 +4,23 @@ let pps = false;
 let submit = false;
 let interrogate = false;
 let search_ing = false;
+let person_active = false;
+let gst = "";
+let yet_person = false;
+let warn = false;
+let ipr = 0;
 
 function init() {
     try {
         stamp = document.querySelector(".stamp");
         mp = document.querySelector(".mini-passport");
+        psp = document.querySelector("#passport");
         tt = document.querySelector(".tooltip");
         itr = document.querySelector(".interrogate");
         search = document.querySelector(".search");
         next = document.querySelector(".next");
         can_select = document.querySelectorAll(".can-select");
+        pi = document.querySelector(".person-item");
     
         setTimeout(() => {
             kita.classList.add("fade-opening");
@@ -30,7 +37,6 @@ function init() {
             document.querySelector(".date-counter").classList.add("date-down");
         }, 4250);
     
-    
         setTimeout(() => {
             PlayAudio(`Asset/Audio/SE/paper_landing.mp3`, 0.6);
             document.querySelector("#paper1").classList.add("paper-print");
@@ -42,14 +48,9 @@ function init() {
         }, 5500);
         
         setTimeout(() => {
-            PlayAudio(`Asset/Audio/SE/paper_landing.mp3`, 0.6);
-            document.querySelector("#paper3").classList.add("paper-print");
-        }, 5750);
-
-        setTimeout(() => {
-            PlayAudio(`Asset/Audio/SE/paper_landing.mp3`, 0.6);
+            PlayAudio(`Asset/Audio/SE/metalstart0.mp3`, 0.2);
             document.querySelector("#key").classList.add("paper-print");
-        }, 6000);
+        }, 5750);
 
         dm_item = document.querySelectorAll(".document-item");
         dm_event();   
@@ -59,12 +60,6 @@ function init() {
 }
 
 function dm_event() {
-    window.addEventListener("keydown", (e) => {
-        if (e.keyCode == 9) interrogate_toggle();
-        if (e.keyCode == 16) call_next();
-        if (e.keyCode == 32) stamp_filp();
-    });
-
     window.addEventListener("mouseup", (e) => {
         try {
             write("window mouseup", e.target);
@@ -79,6 +74,35 @@ function dm_event() {
                 setTimeout(() => {
                     PlayAudio(`Asset/Audio/SE/passport_down.mp3`, 1);
                 }, 100)
+
+                setTimeout(() => {
+                    PlayAudio("Asset/Audio/SE/walkout.mp3", 2);
+                }, 150);
+
+                setTimeout(() => {
+                    randgetme = [
+                        "드디어.", "친일파 청산을 위하여,",
+                        "불편한 심문이구만.", "이 곳에 안 오길 빌겠어.",
+                        "고맙군.", "행운이 찾아오길.",
+                        "마참내.", "이렇게 쉽다니.",
+                        "친일파도 그냥 넘어가겠군", "허술한 거 아닌가?"];
+                    new_chat(randgetme[randint(0, 9)], false);
+                }, 250)
+
+                setTimeout(() => {
+                    pi.classList.remove("in-person");
+                    PlayAnimation(pi, "out-person");
+                }, 750);
+
+                setTimeout(() => {
+                    person_active = false;
+                    yet_person = false;
+
+                    if (warn) {
+                        warn_print();
+                    }
+                }, 2500);
+
             }
             moving = false;
             dm_item.forEach((i) => {
@@ -271,6 +295,53 @@ function dm_event() {
 
 }
 
+
+function add_event(target) {
+    target.addEventListener("mousedown", (e) => {
+        try {
+            write("Item Select", e.target);
+
+            dm_item.forEach((j) => {
+                j.classList.remove("z-up");
+            });
+
+            target.classList.add("z-up");
+            
+            PlayAudio(`Asset/Audio/SE/paper_pick_up.mp3`, 0.2);
+
+            moving = true;
+            target.classList.add("z-up");
+
+        } catch (e) {
+            console.error(e);
+        }
+    });
+
+    target.addEventListener("mouseup", (e) => {
+        try {
+            write("Item Unselect", e.target);
+            PlayAudio(`Asset/Audio/SE/paper_pick_down.mp3`, 0.2);
+        } catch (e) {
+            console.error(e);
+        }
+    })
+
+    target.addEventListener("mousemove", (e) => {
+        try {
+            if (moving && target.classList.contains("z-up") && !interrogate) {
+                const top = parseInt(target.style.top.substring(0, target.style.top.length - 2));
+                const left = parseInt(target.style.left.substring(0, target.style.left.length - 2));
+                write("Item Moving", e.target);
+
+                target.style.left = `${left + e.movementX}px`;
+                target.style.top = `${top + e.movementY}px`;
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    });
+}
+
 function stamp_filp() {
     try {
         isopen = !isopen;
@@ -430,10 +501,6 @@ function page_chk(target, now, max) {
     }
 }
 
-function new_chat(text) {
-
-}
-
 function interrogate_toggle() {
     interrogate = !interrogate;
     dm_item.forEach((i) => {
@@ -502,7 +569,200 @@ function text_tooltip(item, text) {
 }
 
 function call_next() {
-    PlayAudio("Asset/Audio/SE/button_click.mp3", 0.5);
-    PlayAnimation(next, "search-animation", true);
-    PlayAudio("Asset/Audio/SE/speech.mp3", 0.5);
+    if (!person_active) {
+        person_active = true;
+        setTimeout(() => {
+            call_person();
+        }, 1000)
+        PlayAudio("Asset/Audio/SE/button_click.mp3", 0.5);
+        PlayAnimation(next, "search-animation", true);
+        PlayAudio("Asset/Audio/SE/speech.mp3", 0.3);
+    }
+}
+
+function call_person() {
+    knrand = randint(1, 64)
+    knrand = knrand % 2 == 0 || knrand % 3 == 0; // true : Korean
+
+    if (knrand) {
+        warn = false;
+        pstg = klist[randint(0, klist.length - 1)]
+    } else {
+        warn = true;
+        pstg = nlist[randint(0, nlist.length - 1)]
+    }
+
+    itrrand = randint(1, 64);
+    itrrand = itrrand % 2 == 0 || itrrand % 7 == 0; // true : none itr
+
+    console.log(pstg, itrrand);
+
+    if (!itrrand) {
+        change_target = randint(0, 2);
+        ctay = ["in_image", "gender", "sign"];
+        gst = ctay[change_target];
+    }
+
+    forward_person();
+}
+
+function forward_person() {
+    passport_reset();
+    yet_person = true;
+    pi.src = pstg["in_image"];
+    pi.classList.remove("out-person");
+    PlayAnimation(pi, "in-person");
+    setTimeout(() => {
+        PlayAudio("Asset/Audio/SE/walkin.mp3", 0.8);
+    }, 300);
+
+    setTimeout(() => {
+        randgetme = ["신분증 좀 봅시다.", "신분증 내시오.",
+                    "신분증 제출하시오.", "신분증 어디있습니까?",
+                    "제출하시오.", "신분증은 어딨나?",
+                    "빨리 빨리 끝내자고.", "빨리하자고.",
+                    "거 신분증 좀 봅시다.", "친일파는 아니겠지?",
+                    "내놔봐.", "빨리 안주고 뭐하나?"];
+        new_chat(randgetme[randint(0, 11)], true);
+    }, 2250);
+
+    setTimeout(() => {
+        randgetme = ["기다리시지오.", "여기.",
+                    "기다리게.", "어딨더라?",
+                    "기다려봐.", "굳이?",
+                    "나를 모르나?", "자네 좀 실망이군.",
+                    "참을성 좀 기르게.", "좀 참아보시오.",
+                    "참아보시오.", "급한 일 없잖소?",
+                    "잘 부탁하네.", "잘 좀 부탁하오.",
+                    "열심히 하는 군,", "이렇게 작다니.",
+                    "잘 되가는가?", "드디어 일하는군."];
+        new_chat(randgetme[randint(0, 17)], false);
+    }, randint(3500, 4000));
+
+    addtime = 0;
+    txt_event = randint(0, 9);
+    if (txt_event == 4) {    
+        setTimeout(() => {
+            randgetme = ["신분증 한 번 받기 힘들군", "조용히 해"];
+            new_chat(randgetme[randint(0, 1)], true);
+        }, 5000);
+        addtime = 1500;
+    } else if (txt_event == 5) {
+        setTimeout(() => {
+            randgetme = ["우리같은 조선인끼리는", "우리끼리는"];
+            new_chat(randgetme[randint(0, 1)], false);
+        }, 5000);
+        setTimeout(() => {
+            randgetme = ["통하는게 있겠지?", "그냥 보내줘도 괜찮지않나?", "그냥 넘어갑시다."];
+            new_chat(randgetme[randint(0, 2)], false);
+        }, 6000);
+        setTimeout(() => {
+            randgetme = ["모든 사람은 심문을 받아야하오.", "처벌받고 싶은가?", "찔리는게 있나보지?"];
+            new_chat(randgetme[randint(0, 2)], true);
+        }, 7000);
+        setTimeout(() => {
+            randgetme = ["더럽게 깐깐하군.", "최악이군."];
+            new_chat(randgetme[randint(0, 1)], false);
+        }, 8000);
+        addtime = 4500;
+    } else if (txt_event == 6) {
+        setTimeout(() => {
+            randgetme = ["빨리 빨리 해.", "난 급한 몸이라고.",
+                        "재촉하는만큼 빠르겠지?", "너나 빨리하라고."];
+            new_chat(randgetme[randint(0, 3)], false);
+        }, 5000);
+        addtime = 1500;
+    }
+
+    setTimeout(() => {
+        PlayAudio(`Asset/Audio/SE/paper_landing.mp3`, 0.6);
+        document.querySelector("#passport").classList.add("passport-print");
+    }, randint(4500, 5500) + addtime);
+
+}
+
+function new_chat(text, itrs) {
+    cha = document.querySelector(".chat-area");
+    let chtag = randidx();
+    if (itrs) {
+        cha.innerHTML += `<div class="chatbox-l" id=${chtag}>${text}</div>`;
+        PlayAudio("Asset/Audio/SE/inspector.mp3");
+    } else {
+        cha.innerHTML += `<div class="chatbox-r" id=${chtag}>${text}</div>`;
+        PlayAudio("Asset/Audio/SE/entrant.mp3");
+    }
+
+    setTimeout(() => {
+        document.querySelector(`#${chtag}`).classList.add("chat-show");
+    }, 10);
+
+    setTimeout(() => {
+        document.querySelector(`#${chtag}`).classList.remove("chat-show");
+    }, 2010);
+
+    setTimeout(() => {
+        document.querySelector(`#${chtag}`).remove();
+    }, 2210);
+}
+
+function randidx() {
+    rid = ["a", "b", "c", "d", "e", "f"]
+    return `${rid[randint(0, 5)]}${randint(0, randint(64, 128))}${randint(0, 10)}`
+}
+
+function passport_reset() {
+    submit = false;
+    psp.classList.remove("passport-print");
+    psp.classList.remove("stamp-status");
+    psp.classList.remove("stamp-check1");
+    psp.classList.remove("stamp-check2");
+    psp.classList.remove("stamp-check3");
+    psp.classList.remove("passport-small");
+    psp.style.top = "177px";
+    psp.style.left = "92px";
+}
+
+function warn_print(text = "") {
+    ipr++;
+    let dat = document.querySelector(".detect-area");
+    let dat_id = randidx();
+    wait = document.createElement("div");
+    wait.setAttribute("id", dat_id);
+    wait.setAttribute("class", "document-item warn-size");
+    wait.setAttribute("style", "top: 640px; left: 295px;");
+    wait.innerHTML = `<p>${text}</p>`;
+    dat.appendChild(wait);
+
+    if (ipr > 2) {
+        setTimeout(() => {
+            kita.classList.add("gmover");
+            setTimeout(() => {
+                location.href = "scene2.html";
+            }, 2000);
+        }, 4000);
+    }
+
+    setTimeout(() => {
+        document.querySelector(`#${dat_id}`).classList.add("dat-show");
+    }, 10);
+
+    PlayAudio("Asset/Audio/SE/print_feed.mp3", 1);
+
+    setTimeout(() => {
+        PlayAudio("Asset/Audio/SE/print_line.mp3", 0.5);
+    }, 500);
+
+    setTimeout(() => {
+        PlayAudio("Asset/Audio/SE/print_line.mp3", 0.55);
+    }, 1400);
+
+    setTimeout(() => {
+        PlayAudio("Asset/Audio/SE/print_line.mp3", 0.5);
+    }, 2300);
+
+    setTimeout(() => {
+        PlayAudio("Asset/Audio/SE/print_tear.mp3", 0.7);
+        dm_item = document.querySelectorAll(".document-item");
+        add_event(wait);
+    }, 3300);
 }

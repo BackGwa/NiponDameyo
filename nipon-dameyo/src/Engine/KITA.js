@@ -143,9 +143,10 @@ function EngineInit() {
 
 function randint(min, max) {
     try {
-        result = Math.floor(Math.random() * (max - min + 1)) + min;
-        write("randint", { "mix": min, "max": max, "result": result });
-        return result
+        const array = new Uint32Array(1);
+        window.crypto.getRandomValues(array);
+        const randomFraction = array[0] / (0xFFFFFFFF + 1);
+        return Math.floor(randomFraction * (max - min + 1)) + min;
     } catch (e) {
         console.error(e);
         return min;

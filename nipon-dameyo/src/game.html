@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./Style/font.css">
     <link rel="stylesheet" href="./Style/game.css">
 
+    <script src="./Script/person.js"></script>
     <script src="./Script/game.js"></script>
     <script src="./Engine/KITA_loader.js"></script>
 </head>
@@ -40,10 +41,12 @@
                     <img src="./Asset/Texture/table.png" class="table">
                     <img src="./Asset/Texture/mini_passport.png" class="mini-passport" style="top: 0px; left: 0px;">
                     <div class="tooltip"></div>
+                    <img src="./Asset/Texture/PM12_C.png" class="person-item">
+                    <div class="chat-area"></div>
                 </div>
                 <div class="detect-area">
                     <!-- item test-->
-                    <div id="paper3" class="document-item passport-size allow-stamp" style="top: 220px; left: 420px;">
+                    <div id="passport" class="document-item passport-size allow-stamp" style="top: 220px; left: 420px;">
                         <div class="profile-area"></div>
                     </div>
 
@@ -194,7 +197,6 @@
                     <div class="mini-tip">이 곳으로 신분증이나 문서를 놓으십시오.</div>
                 </div>
                 <div class="itr-filter"></div>
-                <div class="text-tooltip" style="top: 0; left: 0;">TEST</div>
             </div>
         </div>
 
