@@ -1,7 +1,7 @@
 const klist = [
     {
         in_image : "Asset/Texture/PM4_C.png",
-        pp_imgae : "Asset/Texture/PM4_D.png",
+        pp_image : "Asset/Texture/PM4_D.png",
         name : "길선주",
         gender : "M",
         birth : "1869. 03. 15",
@@ -9,7 +9,7 @@ const klist = [
     },
     {
         in_image : "Asset/Texture/PM9_C.png",
-        pp_imgae : "Asset/Texture/PM9_D.png",
+        pp_image : "Asset/Texture/PM9_D.png",
         name : "권동진",
         gender : "M",
         birth : "1861. 12. 15",
@@ -17,7 +17,7 @@ const klist = [
     },
     {
         in_image : "Asset/Texture/PM11_C.png",
-        pp_imgae : "Asset/Texture/PM11_D.png",
+        pp_image : "Asset/Texture/PM11_D.png",
         name : "김동삼",
         gender : "M",
         birth : "1878. 06. 23",
@@ -25,7 +25,7 @@ const klist = [
     },
     {
         in_image : "Asset/Texture/PM8_C.png",
-        pp_imgae : "Asset/Texture/PM8_D.png",
+        pp_image : "Asset/Texture/PM8_D.png",
         name : "김좌진",
         gender : "M",
         birth : "1889. 12. 16",
@@ -33,7 +33,7 @@ const klist = [
     },
     {
         in_image : "Asset/Texture/PM4_C.png",
-        pp_imgae : "Asset/Texture/PM4_D.png",
+        pp_image : "Asset/Texture/PM4_D.png",
         name : "김구",
         gender : "M",
         birth : "1876. 08. 29",
@@ -41,7 +41,7 @@ const klist = [
     },
     {
         in_image : "Asset/Texture/PM1_C.png",
-        pp_imgae : "Asset/Texture/PM1_D.png",
+        pp_image : "Asset/Texture/PM1_D.png",
         name : "김규식",
         gender : "M",
         birth : "1881. 01. 27",
@@ -49,7 +49,7 @@ const klist = [
     },
     {
         in_image : "Asset/Texture/PM13_C.png",
-        pp_imgae : "Asset/Texture/PM13_D.png",
+        pp_image : "Asset/Texture/PM13_D.png",
         name : "박열",
         gender : "M",
         birth : "1902. 02. 03",
@@ -57,7 +57,7 @@ const klist = [
     },
     {
         in_image : "Asset/Texture/PM8_C.png",
-        pp_imgae : "Asset/Texture/PM8_D.png",
+        pp_image : "Asset/Texture/PM8_D.png",
         name : "안중근",
         gender : "M",
         birth : "1879. 09. 02",
@@ -68,15 +68,15 @@ const klist = [
 const nlist = [
     {
         in_image : "Asset/Texture/PM1_C.png",
-        pp_imgae : "Asset/Texture/PM1_D.png",
+        pp_image : "Asset/Texture/PM1_D.png",
         name : "친일파1",
         gender : "M",
         birth : "0000. 00. 00",
         sign : ""
     },
     {
-        in_image : "Asset/Texture/PM1_C.png",
-        pp_imgae : "Asset/Texture/PM1_D.png",
+        in_image : "Asset/Texture/PM2_C.png",
+        pp_image : "Asset/Texture/PM2_D.png",
         name : "친일파2",
         gender : "M",
         birth : "0000. 00. 00",

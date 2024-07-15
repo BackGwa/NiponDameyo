@@ -9,6 +9,7 @@ let gst = "";
 let yet_person = false;
 let warn = false;
 let ipr = 0;
+let eg_stack = 0;
 
 function init() {
     try {
@@ -64,6 +65,7 @@ function dm_event() {
         try {
             write("window mouseup", e.target);
             if (pps) {
+                eg_stack = 0;
                 submit = true;
                 mp.classList.remove("mpshow");
                 tt.classList.remove("mpshow");
@@ -142,6 +144,44 @@ function dm_event() {
                         write("passport redrop", i);
                         i.classList.remove("passport-small");
                     });
+                    if (pps) {
+                        eg_stack++;
+                        if (eg_stack == 4) {
+                            new_chat("잘못 걸린거 같군.", false);
+                        } else if (eg_stack == 5) {
+                            new_chat("장난하나?", false);
+                        } else if (eg_stack == 6) {
+                            new_chat("장난을 받아줄 기분은 아닌데.", false);
+                        } else if (eg_stack == 7) {
+                            new_chat("어디서 이런 놈을.", false);
+                        } else if (eg_stack == 8) {
+                            new_chat("그만하라는 말 안 들리나?", false);
+                        } else if (eg_stack == 9) {
+                            new_chat("곧 짤리겠군.", false);
+                            setTimeout(() => {
+                                new_chat("뭐라는건지 모르겠군.", true);
+                            }, 1000);
+                        } else if (eg_stack == 10) {
+                            new_chat("아마 친일파는 그 쪽 같은데?", false);
+                            setTimeout(() => {
+                                new_chat("그럴리가.", true);
+                            }, 1000);
+                        } else if (eg_stack == 11) {
+                            new_chat("적당히.", false);
+                            setTimeout(() => {
+                                new_chat("재밌지않나?", true);
+                            }, 1000);
+                        } else if (eg_stack == 12) {
+                            new_chat("어이.", false);
+                        } else if (eg_stack >= 13 && eg_stack < 19) {
+                            new_chat("그만해.", false);
+                        } else if (eg_stack == 19) {
+                            new_chat("마지막 기회야.", false);
+                        } else if (eg_stack >= 20) {
+                            new_chat("넌 이제 끝이야.", false);
+                            gameover(500);
+                        }
+                    }
                     pps = false;
                 }
             } else {
@@ -610,6 +650,7 @@ function forward_person() {
     passport_reset();
     yet_person = true;
     pi.src = pstg["in_image"];
+    document.querySelector(".pbimg").src = pstg["pp_image"];
     pi.classList.remove("out-person");
     PlayAnimation(pi, "in-person");
     setTimeout(() => {
@@ -734,12 +775,7 @@ function warn_print(text = "") {
     dat.appendChild(wait);
 
     if (ipr > 2) {
-        setTimeout(() => {
-            kita.classList.add("gmover");
-            setTimeout(() => {
-                location.href = "scene2.html";
-            }, 2000);
-        }, 4000);
+        gameover();
     }
 
     setTimeout(() => {
@@ -765,4 +801,13 @@ function warn_print(text = "") {
         dm_item = document.querySelectorAll(".document-item");
         add_event(wait);
     }, 3300);
+}
+
+function gameover(delay = 4000) {
+    setTimeout(() => {
+        kita.classList.add("gmover");
+        setTimeout(() => {
+            location.href = "scene2.html";
+        }, 2000);
+    }, delay);
 }
