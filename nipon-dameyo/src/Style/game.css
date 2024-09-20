@@ -794,9 +794,11 @@ kita-layer {
 
 .profilebox {
     width: 7rem;
-    height: 100%;
+    height: calc(100% - 0.5rem);
     margin-left: 0.5rem;
+    margin-top: 0.5rem;
     overflow: hidden;
+    background: #a1948e;
 }
 
 .pbimg {
@@ -810,6 +812,9 @@ kita-layer {
     width: calc(100% - 1rem - 7rem);
     height: 100%;
     margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
 }
 
 .sign-area {
@@ -1197,4 +1202,34 @@ kita-layer {
     100% {
         transform: translateY(0%);
     }
+}
+
+.profile-name, .profile-gender, .profile-birth {
+    color: #5f4d4e;
+    font-family: 'PFStardust';
+    line-height: 1.4rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 0.3rem;
+}
+
+.profile-name::before {
+    content: "이름";
+    background-color: #5f4d4e;
+    color: #e9dcd3;
+    margin-right: 0.75rem;
+}
+
+.profile-gender::before {
+    content: "성별";
+    background-color: #5f4d4e;
+    color: #e9dcd3;
+    margin-right: 0.75rem;
+}
+
+.profile-birth::before {
+    content: "생년";
+    background-color: #5f4d4e;
+    color: #e9dcd3;
+    margin-right: 0.75rem;
 }

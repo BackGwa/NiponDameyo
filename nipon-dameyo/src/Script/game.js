@@ -649,8 +649,12 @@ function call_person() {
 function forward_person() {
     passport_reset();
     yet_person = true;
+    Gtable = {"M" : "남자", "F" : "여자"}
     pi.src = pstg["in_image"];
     document.querySelector(".pbimg").src = pstg["pp_image"];
+    document.querySelector(".profile-name").innerText = pstg["name"];
+    document.querySelector(".profile-gender").innerText = Gtable[pstg["gender"]];
+    document.querySelector(".profile-birth").innerText = pstg["birth"];
     pi.classList.remove("out-person");
     PlayAnimation(pi, "in-person");
     setTimeout(() => {
